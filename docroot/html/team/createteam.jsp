@@ -10,15 +10,16 @@
 <%@page import="com.vidyayug.attribute.service.Team_HierarchyLocalServiceUtil"%>
 <%@page import="javax.portlet.RenderRequest"%>
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/html/init.jsp"%>
 
 
 
 <%
 	String artifactId = ParamUtil.getString(renderRequest, "artifactId");
-	System.out.println("Priinting artifactId in create vidyayug............."+artifactId);
+	System.out.println("Priinting artifactId ............."+artifactId);
 	String artifactTypeLabel = ParamUtil.getString(renderRequest, "artifactTypeLabel");
-	System.out.println("Printing artifactTypeLabel"+artifactTypeLabel);
+	System.out.println("Printing artifactTypeLabel: "+artifactTypeLabel);
 
 	long orgnizationId = 0;
 	com.liferay.portal.model.Group currentGroup = themeDisplay.getLayout().getGroup();
@@ -61,7 +62,7 @@
 
 	<aui:form action="<%=AddVidyayugTeams%>" method="post" name="insertTeamUserForm" id="insertTeamUserForm" cssClass="vy_attributes">
 	<aui:input name="artifactId" id="artifactId" type="hidden" value="<%=artifactId%>"/>
-	<aui:input name="artifactTypeId" id="artifactTypeId" type="hidden" value="<%=artifactTypeLabel%>"/>
+	<aui:input name="artifactTypeLabel" id="artifactTypeLabel" type="hidden" value="<%=artifactTypeLabel%>"/>
 		<aui:layout>		
 			<aui:column columnWidth="50">
 				<aui:input type="text" label="Team Name" name="teamName"

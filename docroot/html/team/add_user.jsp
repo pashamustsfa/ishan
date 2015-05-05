@@ -1,3 +1,6 @@
+<%@page import="com.vidyayug.scrum.service.BacklogLocalServiceUtil"%>
+<%@page import="com.liferay.portal.model.Team"%>
+<%@page import="com.vidyayug.attribute.service.Team_HierarchyLocalServiceUtil"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.liferay.portal.model.User"%>
@@ -30,23 +33,75 @@
 <script type="text/javascript" src="/html/js/jqx/jqxlistbox.js"></script>
 <script type="text/javascript" src="/html/js/jqx/jqxdropdownlist.js"></script>
 <script type="text/javascript" src="/html/js/jqx/jqxgrid.filter.js"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <liferay-theme:defineObjects />
 
 <portlet:resourceURL var="resourceURL"></portlet:resourceURL>
 <%
 	long teamId = ParamUtil.getLong(request,"teamId");
+	long artifactId = ParamUtil.getLong(request,"artifactId");
+	String artifactTypeLabel = ParamUtil.getString(request,"artifactTypeLabel");
+	System.out.println("add_user...........................teamId: " + teamId);
+	
+	ApplicationParamGroup appGroup = ApplicationParamGroupLocalServiceUtil.findBygroupNameRecords("Scrum_Artifact_Team");
+	  ApplicationParamValue appValue = ApplicationParamValueLocalServiceUtil.findByappParanNamesAppParamGrpId(artifactTypeLabel, appGroup.getAppParamGroupId());
+	  long artifactTypeId = appValue.getAppParamValueId();
+	  List records = BacklogLocalServiceUtil.getTeamData(artifactTypeId, artifactId, 1);
 %>
 
 <style>
 .userProfiles{
-margin-top: 11px;
+	margin-top: 11px;
+}
+
+#optionRow .labelText {
+	font-size:12px;float:left;width:65px;height:25px;line-height:25px;
+}
+
+#optionRow .teamSelect {
+	width:150px;
+}
+
+#optionRow select {
+	font-size:12px;float:left;width:135px;margin: 0;
+}
+
+#updateTeamUserAssociation {
+
 }
 </style>
-
-<aui:button class="btn" name="updateTeamUserAssociation" id="updateTeamUserAssociation" value="Update Association" label="" style="float:left;"></aui:button>
-
-<div class="alert alert-success" id="<portlet:namespace  />successMsg" style="float:left;margin-left:10px;display:none;"> Your request completed successfully. </div>
-
+<div id="optionRow">
+	<span class="labelText">Team: </span>
+	<span class="labelText teamSelect">
+	<select name="orgTeams" id="<portlet:namespace  />orgTeams">
+		<option value="0">Select</option>
+		<c:if test='<%= records!=null&&!records.isEmpty()%>'>
+<%-- 			<c:forEach items="{records}" var="teams">
+				<c:forEach items="{teams}" var="i">
+				</c:forEach>
+				<option value='<%=Long.valueOf(data[0].toString()) %>' selected="selected"><%=data[1].toString()%></option>
+			</c:forEach> --%>
+			<%
+			for(Object teams:records) {			  
+				  Object data[] = (Object[])teams;
+				  if(teamId == Long.valueOf(data[0].toString())) {
+			%>
+			<option value='<%=Long.valueOf(data[0].toString()) %>' selected="selected"><%=data[1].toString()%></option>
+			<%
+											} else  {
+			%>
+			<option value='<%=Long.valueOf(data[0].toString()) %>'><%=data[1].toString()%></option>
+			<%
+											}
+				}
+			%>
+		</c:if>
+	</select>
+	</span>				
+	<aui:button name="updateTeamUserAssociation" id="updateTeamUserAssociation" value="Update Association" label="" style="float:left;width:160px;height:30px;text-shadow: 0px 0px #FFF;"></aui:button>
+	
+	<div class="alert alert-success" id="<portlet:namespace  />successMsg" style="float:left;margin-left:10px;display:none;"> User assigned successfully. </div>
+</div>
 <br/><br/>
 <div class="userProfiles" id="userProfiles"></div>
 
@@ -56,11 +111,13 @@ margin-top: 11px;
 
 <script>
 jqMapResouce(document).ready(function () {
+	
 	getUserDatails();
 });
-</script>
 
-<script type="text/javascript">
+jqMapResouce("#<portlet:namespace  />orgTeams").change(function(event) {
+	getUserDatails();
+});
 
 jqMapResouce('#<portlet:namespace />updateTeamUserAssociation').click(function() {
 	var allSelectedVals=[];
@@ -76,29 +133,37 @@ jqMapResouce('#<portlet:namespace />updateTeamUserAssociation').click(function()
 	allUnSelectedVals = allUnSelectedVals.substring(1);
 
 	var record = jqMapResouce('#userProfiles').jqxGrid('getrowdata', 0);
-	var teamId = record.teamId;
-	jqMapResouce.ajax({
-		url:'<%=resourceURL%>',
-		dataType: "text",
-		data:{
-			<portlet:namespace  />cmd:'updateTeamUserAssociation',
-			<portlet:namespace  />allSelectedVals:allSelectedVals,
-			<portlet:namespace  />allUnSelectedVals:allUnSelectedVals,
-			<portlet:namespace  />teamId:teamId
-		},
-		type: "post",
-		
-		success: function(data) {
-			if(data == 1) {
-				jqMapResouce('#<portlet:namespace  />successMsg').css('display','block');
-				setTimeout(function() {
+	var teamId = jqMapResouce("#<portlet:namespace  />orgTeams").val();
+	if(teamId > 0) {
+		jqMapResouce.ajax({
+			url:'<%=resourceURL%>',
+			dataType: "text",
+			data:{
+				<portlet:namespace  />CMD:'updateTeamUserAssociation',
+				<portlet:namespace  />allSelectedVals:allSelectedVals,
+				<portlet:namespace  />allUnSelectedVals:allUnSelectedVals,
+				<portlet:namespace  />teamId:teamId
+			},
+			type: "post",
+			
+			success: function(data) {
+				if(data == 1) {
+					jqMapResouce('#<portlet:namespace  />successMsg').text('User assigned successfully.');
+					jqMapResouce('#<portlet:namespace  />successMsg').css('color','#000000');
+					jqMapResouce('#<portlet:namespace  />successMsg').css('display','block');
+					setTimeout(function() {
+						jqMapResouce('#<portlet:namespace  />successMsg').css('display','none');
+					},5000);
+				} else {
 					jqMapResouce('#<portlet:namespace  />successMsg').css('display','none');
-				},5000);
-			} else {
-				jqMapResouce('#<portlet:namespace  />successMsg').css('display','none');
+				}
 			}
-		}
-	});
+		});
+	} else {
+		jqMapResouce('#<portlet:namespace  />successMsg').css('display','block');
+		jqMapResouce('#<portlet:namespace  />successMsg').text('Please select team 1st.');
+		jqMapResouce('#<portlet:namespace  />successMsg').css('color','#ff0000');
+	}
 });
 
 function getUnselectedIndexes() {
@@ -129,13 +194,14 @@ function getUnselectedIndexes() {
 <script>
 function getUserDatails() {
 	try {
-		var teamId = '<%= teamId%>';
+		var orgTeams = jqMapResouce("#<portlet:namespace  />orgTeams").val();
+
 		jqMapResouce.ajax({
 			url:'<%=resourceURL%>',
 			dataType: "json",
 			data:{
-				<portlet:namespace  />cmd:'orgranizationBasedUsersInfo',
-				<portlet:namespace  />teamId:teamId
+				<portlet:namespace  />CMD:'orgranizationBasedUsersInfo',
+				<portlet:namespace  />teamId:orgTeams
 			},
 			type: "post",
 			
@@ -216,8 +282,8 @@ function printUserDatails(data) {
    		                  { text: 'Screen Name', datafield: 'screenName', width:'55%'},
    		              	  { text: 'Full Name', datafield: 'fullName', width:'55%'}
    		               ]
-   		            });
-        	
+   		            }); 
+        	jqMapResouce("#userProfiles").find(".jqx-checkbox-default:first").css('display', 'none');
         	if(data.length>0) {
 				var rowindexes = jqMapResouce('#userProfiles').jqxGrid('getselectedrowindexes');
 				for (var i = 0; i < rowindexes.length; i++) {
