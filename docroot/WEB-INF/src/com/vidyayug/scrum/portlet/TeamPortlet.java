@@ -44,6 +44,7 @@ import com.vidyayug.global.model.ApplicationParamGroup;
 import com.vidyayug.global.model.ApplicationParamValue;
 import com.vidyayug.global.service.ApplicationParamGroupLocalServiceUtil;
 import com.vidyayug.global.service.ApplicationParamValueLocalServiceUtil;
+import com.vidyayug.scrum.common.ScrumConstants;
 import com.vidyayug.scrum.service.ArtifactTeamMappingLocalServiceUtil;
 import com.vidyayug.scrum.service.BacklogLocalServiceUtil;
 /**
@@ -118,10 +119,12 @@ public class TeamPortlet extends MVCPortlet {
 		} else if ("GetTeamData".equalsIgnoreCase(cmdValue)) {			
 			long isActive = 1;
 			String artifactTypeLabel =ParamUtil.getString(resourceRequest,"artifactTypeLabel");
+			System.out.println("Printing sadasdasdasd artifactTypeLabel.........."+artifactTypeLabel);
 			long artifactId =ParamUtil.getLong(resourceRequest,"artifactId");
 			try {
-			  ApplicationParamGroup appGroup = ApplicationParamGroupLocalServiceUtil.findBygroupNameRecords("Scrum_Artifact_Team");
+			  ApplicationParamGroup appGroup = ApplicationParamGroupLocalServiceUtil.findBygroupNameRecords(ScrumConstants.APG_ARTIFACT_TEAM);
 			  ApplicationParamValue appValue = ApplicationParamValueLocalServiceUtil.findByappParanNamesAppParamGrpId(artifactTypeLabel, appGroup.getAppParamGroupId());
+			  System.out.println("Printing another artifactTypeLabel....."+artifactTypeLabel);
 			  long artifactTypeId = appValue.getAppParamValueId();
 			  PrintWriter writer = resourceResponse.getWriter();
 			  List records = BacklogLocalServiceUtil.getTeamData(artifactTypeId, artifactId, isActive);
