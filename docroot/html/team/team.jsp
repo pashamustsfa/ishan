@@ -131,7 +131,7 @@ function getTeamData() {
    		            };
 					
 					var workSheetButton_html = function (id) {
-						return '<input type="image" src="/html/img/Settings.png" width="1" height="20" onClick="workSheetButtonClick(event)" class="workSheetButton" id="' + id + '" value="Actions" style="margin-left:41px;margin-top: 3px;"/>' 
+						return '<input type="image" src="/html/img/Settings.png" width="1" height="20" onClick="workSheetButtonClick(event)" class="workSheetButton" id="' + id + '" value="Actions" style="margin-left:26px;margin-top: 3px;"/>' 
 					};
 			 	        	  
 			 	    var dataAdapter = new jqTeamData.jqx.dataAdapter(source);
@@ -152,11 +152,11 @@ function getTeamData() {
 						selectionmode: 'checkbox',
 						columnsresize: true,		                
 						columns: [ 
-    		                      { text: 'Name', datafield: 'teamName', filtertype: 'textbox',width: '40%'},
-    		                      { text: 'No of Members', datafield: 'no_of_users', filtertype: 'textbox',width: '15%',filterable: false},
-    		                      { text: 'No of Backlogs', datafield: 'no_of_backlogs', width: '15%',filterable: false},
-    		                      { text: 'No Of Userstories', datafield: 'no_of_userstory',width:'15%',filterable: false},
-    	   		                  { text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'teamId',width:'15%', cellsalign: 'center',filterable: false}
+    		                      { text: 'Name', datafield: 'teamName', filtertype: 'textbox',width: '60%'},
+    		                      { text: 'No. of Members', datafield: 'no_of_users', filtertype: 'textbox',width: '11%',filterable: false},
+    		                      { text: 'No. of Backlogs', datafield: 'no_of_backlogs', width: '11%',filterable: false},
+    		                      { text: 'No. of Userstories', datafield: 'no_of_userstory',width:'11%',filterable: false},
+    	   		                  { text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'teamId',width:'8%', cellsalign: 'center',filterable: false}
 						]
 					});	
 			}
@@ -471,7 +471,7 @@ button {
 	<div id="<portlet:namespace />teamGrid" class="teamsGrids"></div>
 	
 	
-	<div id="<portlet:namespace />teamMenu" class="actions_dropdown">	
+	<div id="<portlet:namespace />teamMenu" class="actions_dropdown" style="margin-left:405px !important">	
 	    <ul>
 	   		<li><img alt="View Details" src="/html/img/view.png" style="width: 15%;">&nbsp;&nbsp;View Details</li>
 			<li><img alt="Edit" src="/html/img/edit.png" style="width: 15%;">&nbsp;&nbsp;Edit</li>
