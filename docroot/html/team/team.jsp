@@ -451,7 +451,7 @@ background-color: rgb(232,232,232) !important;
 		
 		<div id="secondHeader">
 			<div class="buttonForAdd" title="Click here to add team" onclick="<portlet:namespace />teamPopup();">
-				<div class="addingTeam">Add Team</div>
+				<div class="addingTeam" style="cursor:pointer !important;">Add Team</div>
 			</div>
 		</div>
 		
