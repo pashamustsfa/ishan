@@ -471,7 +471,7 @@ button {
 	<div id="<portlet:namespace />teamGrid" class="teamsGrids"></div>
 	
 	
-	<div id="<portlet:namespace />teamMenu" class="actions_dropdown" style="margin-left:405px !important">	
+	<div id="<portlet:namespace />teamMenu" class="actions_dropdown" style="margin-left:405px !important;height:110px !important;width:140px !important;">	
 	    <ul>
 	   		<li><img alt="View Details" src="/html/img/view.png" style="width: 15%;">&nbsp;&nbsp;View Details</li>
 			<li><img alt="Edit" src="/html/img/edit.png" style="width: 15%;">&nbsp;&nbsp;Edit</li>
