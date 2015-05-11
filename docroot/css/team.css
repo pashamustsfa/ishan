@@ -196,10 +196,9 @@ button {
 }
   
 .actions_dropdown{
-	width: 154px !important;
-	height: auto !important;
 	position: absolute;
 	display:none;
+	width:151px;
 	background-color: #ffffff;
 	border: solid 1px transparent;
 	-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
@@ -209,12 +208,6 @@ button {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	border-radius: 2px;	  
-		-webkit-animation-name: bounceIn;
-	animation-name: bounceIn;
-	-webkit-animation-duration: .75s;
-	animation-duration: .75s;
-	
-	
 }
 
 
@@ -235,6 +228,15 @@ padding: 0px;
 	width: 15%;
 }
 
+.actions_dropdown{
+	-webkit-animation-name: bounceIn;
+	animation-name: bounceIn;
+	-webkit-animation-duration: .75s;
+	animation-duration: .75s;
+	left: 676px ! important;
+	width: 154px ! important;
+	height: auto ! important;
+}
 
 @-webkit-keyframes bounceIn {
 	0%, 20%, 40%, 60%, 80%, 100% {
