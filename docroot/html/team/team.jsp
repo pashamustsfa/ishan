@@ -444,11 +444,7 @@ background-color: rgb(232,232,232) !important;
 	<div id="teamDivHeights" style="margin-top: -7px;width: 101.54%;">
 		<aui:input name="artifactId" id="artifactId" type="hidden" value="0"/>
 		<aui:input name="artifactTypeLabel" id="artifactTypeLabel" type="hidden" value="0"/>
-		
-		
-		<div id ="topHeader" style="height: 50px;">
-		</div>
-		
+				
 		<div id="secondHeader">
 			<div class="buttonForAdd" title="Click here to add team" onclick="<portlet:namespace />teamPopup();">
 				<div class="addingTeam" style="cursor:pointer !important;">Add Team</div>
