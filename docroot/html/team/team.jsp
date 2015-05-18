@@ -52,6 +52,9 @@
 .aui button.btn{
   width:120px;
 }
+#teamGrid{
+  margin-top: -6px;
+}
 </style>					
 <portlet:resourceURL var="teamURL"></portlet:resourceURL>
 
@@ -457,7 +460,7 @@ background-color: rgb(232,232,232) !important;
 		<div id="thirdHeader">
 			<div class="dropdown">
 				<h6>Add</h6>
-				<div class="actions_button1" ><img src="/html/img/add-01.png" style="margin-top: -65px;margin-left: 32px;width:15px;cursor:pointer;"></div>
+				<div class="actions_button1" ><img src="/html/img/add-01.png" style="margin-top: -65px;margin-left: 29px;width:10px;cursor:pointer;"></div>
 				<div class="actions_dropdown1">
 					<ul class="root">
 						<li>
