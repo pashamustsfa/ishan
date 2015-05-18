@@ -159,7 +159,10 @@ function getTeamData() {
     	   		                  { text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'teamId',width:'8%', cellsalign: 'center',filterable: false}
 						]
 					});	
-			}
+			},
+				complete: function(){
+				jqTeamData('#<portlet:namespace />teamGrid input[type="textarea"]'). attr("placeholder", "Search Team ...");
+				},
 		});
 	}catch(e){
 		alert('error in getResource : ' + e);
