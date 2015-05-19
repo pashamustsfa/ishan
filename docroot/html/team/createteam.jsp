@@ -1,3 +1,6 @@
+<%@page import="com.liferay.portal.service.TeamLocalServiceUtil"%>
+<%@page import="com.vidyayug.scrum.service.ArtifactTeamMappingLocalServiceUtil"%>
+<%@page import="com.vidyayug.scrum.common.ScrumConstants"%>
 <%@page import="com.vidyayug.scrum.model.ArtifactTeamMapping"%>
 <%@page import="com.vidyayug.global.service.ApplicationParamValueLocalServiceUtil"%>
 <%@page import="com.vidyayug.global.service.ApplicationParamGroupLocalServiceUtil"%>
@@ -13,28 +16,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/html/init.jsp"%>
 
-
-
 <%
 	String artifactId = ParamUtil.getString(renderRequest, "artifactId");
 	System.out.println("Priinting artifactId ............."+artifactId);
 	String artifactTypeLabel = ParamUtil.getString(renderRequest, "artifactTypeLabel");
 	System.out.println("Printing artifactTypeLabel: "+artifactTypeLabel);
 
-	long orgnizationId = 0;
-	com.liferay.portal.model.Group currentGroup = themeDisplay.getLayout().getGroup();
-	if (currentGroup.isOrganization()) {
-		orgnizationId = currentGroup.getClassPK();
-	} else if (currentGroup.isCommunity()) {
-		orgnizationId = currentGroup.getGroupId();
+	long artifactTypeId = 0;
+	long isActive = 1;
+	ApplicationParamGroup appParamGroup = ApplicationParamGroupLocalServiceUtil.findBygroupNameRecords(ScrumConstants.APG_ARTIFACT_TEAM);
+	if (Validator.isNotNull(appParamGroup)) {
+		 ApplicationParamValue appParam = ApplicationParamValueLocalServiceUtil.findByappParanNamesAppParamGrpId(artifactTypeLabel, appParamGroup.getAppParamGroupId());
+		 artifactTypeId = appParam.getAppParamValueId(); 
 	}
-	List orgTeamsObj=null;
-	try {
-		System.out.println("orgnizationId  "+orgnizationId);
-		orgTeamsObj = Team_HierarchyLocalServiceUtil.getOrgTeams(orgnizationId);
-	}catch(Exception e){
-		System.out.println("*****************Exception while getting the paresnt teams****************************"+e.getMessage());
-	}
+	
+	List<ArtifactTeamMapping> artifactTeamMappingList = ArtifactTeamMappingLocalServiceUtil.findByArtifactTypeIdAndArtifactId(artifactTypeId, Long.valueOf(artifactId), isActive);
+
 %>
  
 <style>
@@ -74,13 +71,13 @@
 			<aui:column columnWidth="50">
 				<aui:select name="orgTeams" label="Parent Team">
 					<aui:option value="">--Select--</aui:option>
-					<c:if test='<%= orgTeamsObj!=null&&!orgTeamsObj.isEmpty()%>'>
+					<c:if test='<%= artifactTeamMappingList!=null&&!artifactTeamMappingList.isEmpty()%>'>
 						<%
-							Iterator orgTeamsObjList = orgTeamsObj
-															.iterator();
-													while (orgTeamsObjList.hasNext()) {
-														Team teamObj = (Team) orgTeamsObjList
-																.next();
+							Iterator<ArtifactTeamMapping> artifactTeamMappingIt = artifactTeamMappingList.iterator();
+							while (artifactTeamMappingIt.hasNext()) {
+								
+								ArtifactTeamMapping artifactTeamMapping = artifactTeamMappingIt.next();
+								Team teamObj = TeamLocalServiceUtil.getTeam(artifactTeamMapping.getTeamId());
 						%>
 						<aui:option value='<%=teamObj.getTeamId() %>'><%=teamObj.getName()%></aui:option>
 						<%
