@@ -189,7 +189,7 @@ var workSheetButtonClick= function (event) {
 	    	   i = 1;
 	           var args = event.args;
 	           var rowindex = jqTeamData("#<portlet:namespace />teamGrid").jqxGrid('getselectedrowindex');
-	           if (jqTeamData.trim(jqTeamData(args).text().trim()) == "Add User") {
+	           if (jqTeamData.trim(jqTeamData(args).text().trim()) == "Assign User") {
 	               editrow = rowindex;
 	            	jqTeamData("#<portlet:namespace />rowId").val(editrow);
 	            	var dataRecord = jqTeamData("#<portlet:namespace />teamGrid").jqxGrid('getrowdata', editrow);	
@@ -244,7 +244,7 @@ function <portlet:namespace />addUser(teamId) {
 		var url='<%= addUserURL %>' + '&<portlet:namespace />teamId=' + teamId + '&<portlet:namespace />artifactId=' + artifactId + '&<portlet:namespace />artifactTypeLabel=' + artifactTypeLabel; 
 		var dialog = Liferay.Util.Window.getWindow(
 			{
-				title: "Add User",
+				title: "Assign User",
 				dialog: {
 					width: 950,
 					height:600,
@@ -466,7 +466,7 @@ background-color: rgb(232,232,232) !important;
 						<li>
 							<a href="#Dashboard" title="Click here to add team" onclick="<portlet:namespace />teamPopup();">Team</a>
 						</li>
-						<li ><a href="#Profile" title="Click here to add user" onclick="<portlet:namespace />addUser(0);">User</a></li>
+						<li ><a href="#Profile" title="Click here to assign User" onclick="<portlet:namespace />addUser(0);">User</a></li>
 					</ul>
 				</div>
 			</div>
@@ -486,7 +486,7 @@ background-color: rgb(232,232,232) !important;
 	   		<li><img alt="View Details" src="/html/img/view.png" style="width: 15%;">&nbsp;&nbsp;View Details</li>
 			<li><img alt="Edit" src="/html/img/edit.png" style="width: 15%;">&nbsp;&nbsp;Edit</li>
 	   		<li><img alt="View Users" src="/html/img/view.png" style="width: 15%;">&nbsp;&nbsp;View Users</li>
-			<li><img alt="Add User" src="/html/img/add (2).png" style="width: 15%;">&nbsp;&nbsp;Add User</li>
+			<li><img alt="Assign User" src="/html/img/add (2).png" style="width: 15%;">&nbsp;&nbsp;Assign User</li>
 	    </ul>
 	</div>
 </body>
