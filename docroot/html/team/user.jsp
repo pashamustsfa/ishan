@@ -152,7 +152,7 @@ function <portlet:namespace />addUser(){
 		var url='<%= addUserURL %>' + '&<portlet:namespace />teamId=' + teamId + '&<portlet:namespace />artifactId=' + artifactId + '&<portlet:namespace />artifactTypeLabel=' + artifactTypeLabel; 
 		var dialog = Liferay.Util.Window.getWindow(
 			{
-				title: "Add User",
+				title: "Assign User",
 				dialog: {
 					width: 950,
 					height:600,
