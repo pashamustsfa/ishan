@@ -79,6 +79,11 @@
 </script>
 
 <script>
+function editTeam(){
+	alert('Under construction');
+}function viewTeamDetails(){
+	alert('Under construction');
+}
 function getTeamData() {
 	var artifactId = jqTeamData("#<portlet:namespace />artifactId").val();
 	var artifactTypeLabel = jqTeamData("#<portlet:namespace />artifactTypeLabel").val();
@@ -483,8 +488,8 @@ background-color: rgb(232,232,232) !important;
 	
 	<div id="<portlet:namespace />teamMenu" class="actions_dropdown" style="margin-left:405px !important;height:110px !important;width:140px !important;">	
 	    <ul>
-	   		<li><img alt="View Details" src="/html/img/view.png" style="width: 15%;">&nbsp;&nbsp;View Details</li>
-			<li><img alt="Edit" src="/html/img/edit.png" style="width: 15%;">&nbsp;&nbsp;Edit</li>
+	   		<li onclick="viewTeamDetails();"><img alt="View Details" src="/html/img/view.png" style="width: 15%;">&nbsp;&nbsp;View Details</li>
+			<li onclick="editTeam();"><img alt="Edit" src="/html/img/edit.png" style="width: 15%;">&nbsp;&nbsp;Edit</li>
 	   		<li><img alt="View Users" src="/html/img/view.png" style="width: 15%;">&nbsp;&nbsp;View Users</li>
 			<li><img alt="Assign User" src="/html/img/add (2).png" style="width: 15%;">&nbsp;&nbsp;Assign User</li>
 	    </ul>
