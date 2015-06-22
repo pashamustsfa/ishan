@@ -57,7 +57,9 @@
 }
 </style>					
 <portlet:resourceURL var="teamURL"></portlet:resourceURL>
-
+<liferay-portlet:renderURL var="importUserURL" plid="<%= portletId%>" portletName="excelimport_WAR_ExcelImportportlet" windowState="<%=LiferayWindowState.POP_UP.toString() %>">
+	<liferay-portlet:param name="jspPage" value="/html/excelImport/view.jsp" />
+</liferay-portlet:renderURL>
 <liferay-portlet:renderURL var="teamPopupURL" windowState="<%= com.liferay.portal.kernel.portlet.LiferayWindowState.POP_UP.toString() %>" >
 	<liferay-portlet:param name="jspPage" value='<%="/html/team/createteam.jsp"%>' />
 </liferay-portlet:renderURL>
@@ -412,6 +414,42 @@ jqTeamData(document).ready(function() {
 });	
 </script>
 
+<aui:script>
+function <portlet:namespace />importUser(){
+	try{
+		var url='<%= importUserURL %>'+ '&_excelimport_WAR_ExcelImportportlet_templateName=UserCreation'+ '&_excelimport_WAR_ExcelImportportlet_noOfColumns=7'+'&_excelimport_WAR_ExcelImportportlet_columns=First Name,Middle Name,Last Name,Email Address,Mobile Number,Gender,Role';
+		
+		var dialog = Liferay.Util.Window.getWindow(
+			{
+				title: "<%=LanguageUtil.get(pageContext,"lbl.action.import.user", "Import User")%>",
+				dialog: {
+						width: 1077,
+						height:650,
+						centered: true,
+						destroyOnHide: true,
+						toolbars: {
+						footer: [
+							{
+								label: '<%= UnicodeLanguageUtil.get(pageContext, "lbl.form.label.close", "Close") %>',
+								on: {
+									click: function() {
+										dialog.hide();
+										location.reload();
+										<!-- getProjectDetails(); -->
+									}
+								}
+							}
+						]
+					}
+				},
+				uri: url
+			}
+		);
+	}catch (e) {
+		alert(e);
+	}
+}
+</aui:script>
 
 
 
@@ -472,6 +510,7 @@ background-color: rgb(232,232,232) !important;
 							<a href="#Dashboard" title="Click here to add team" onclick="<portlet:namespace />teamPopup();">Team</a>
 						</li>
 						<li ><a href="#Profile" title="Click here to assign User" onclick="<portlet:namespace />addUser(0);">User</a></li>
+					    <li ><a href="#Profile" title="Click here to import Users" onclick="<portlet:namespace />importUser();">Import User</a></li>
 					</ul>
 				</div>
 			</div>
