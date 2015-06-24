@@ -258,7 +258,7 @@ jqUser(document).ready(function() {
 			   		               	  { text: 'Email Address',columntype: 'textbox', filtertype: 'textbox',datafield: 'emailAddress', width: '30%',filterable: false},
 			   		            	  /* { text: 'PhoneNumber',columntype: 'textbox', filtertype: 'textbox', datafield: 'phoneNumbers',width: '15%',filterable: false}, */
 			   		            	 { text: 'Roles',columntype: 'textbox', filtertype: 'textbox', datafield: 'roleNames',width: '30%',filterable: false},
-			   		            	{ text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'userId',width:'10%', cellsalign: 'center',filterable: false}
+			   		            	{ text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'userId',width:'6%', cellsalign: 'center',filterable: false}
 			   		            	  
 			   		                ]
 			   		         });
