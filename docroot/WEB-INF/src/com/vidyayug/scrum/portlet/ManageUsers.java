@@ -2,8 +2,9 @@ package com.vidyayug.scrum.portlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.util.List;
+
+
 
 
 
@@ -20,6 +21,8 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Phone;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.OrganizationLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -27,7 +30,9 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 public class ManageUsers  extends MVCPortlet {
 	public void serveResource(ResourceRequest resourceRequest,ResourceResponse resourceResponse) throws IOException {
 		String cmdValue = ParamUtil.getString(resourceRequest, "CMD");
+		
 		ThemeDisplay themeDisplay= (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		 //long companyId=themeDisplay.getCompanyId();
 		long organizationId=themeDisplay.getScopeGroup().getOrganizationId();
 		if("GetUserHistory".equalsIgnoreCase(cmdValue)) {
 			
@@ -47,7 +52,8 @@ public class ManageUsers  extends MVCPortlet {
 			}
 	}
 public JSONArray getUsersJsonData(List<User> userList,ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
-		
+	ThemeDisplay themeDisplay= (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
+	 long companyId=themeDisplay.getCompanyId();   
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 		
 		for (User users : userList) {
@@ -93,7 +99,7 @@ public JSONArray getUsersJsonData(List<User> userList,ResourceRequest resourceRe
 			List<Role> roleList;
 			JSONArray jsonArrayRoles=JSONFactoryUtil.createJSONArray();
 				try {
-				roleList = users.getRoles();
+				roleList = RoleLocalServiceUtil.getUserRoles(users.getUserId());
 				if(roleList.size()>0){
 				for(int i=0;i<roleList.size();i++){
 					JSONObject jsonObject_role = JSONFactoryUtil.createJSONObject();
