@@ -243,7 +243,7 @@ jqUser(document).ready(function() {
 			   		                height:425,
 			   		                source: dataAdapter,
 			   		             	showfilterrow: true,
-			   		                enabletooltips: true,
+			   		                
 			   		                groupable: true,
 			   		                sortable: true,
 			   		                showaggregates: true,
@@ -254,11 +254,11 @@ jqUser(document).ready(function() {
 			   	   		            selectionmode: 'checkbox',
 			   		                columnsresize: true,		                
 			      		            columns: [ 
-			   		                  { text: 'Name',columntype: 'textbox', filtertype: 'textbox',datafield: 'userName', width:'38.5%'},
-			   		               	  { text: 'Email Address',columntype: 'textbox', filtertype: 'textbox',datafield: 'emailAddress', width: '20%',filterable: false},
-			   		            	  { text: 'PhoneNumber',columntype: 'textbox', filtertype: 'textbox', datafield: 'phoneNumbers',width: '15%',filterable: false},
-			   		            	 { text: 'Roles',columntype: 'textbox', filtertype: 'textbox', datafield: 'roleNames',width: '20%',filterable: false},
-			   		            	{ text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'userId',width:'6%', cellsalign: 'center',filterable: false}
+			   		                  { text: 'Name',columntype: 'textbox', filtertype: 'textbox',datafield: 'userName', width:'30%'},
+			   		               	  { text: 'Email Address',columntype: 'textbox', filtertype: 'textbox',datafield: 'emailAddress', width: '30%',filterable: false},
+			   		            	  /* { text: 'PhoneNumber',columntype: 'textbox', filtertype: 'textbox', datafield: 'phoneNumbers',width: '15%',filterable: false}, */
+			   		            	 { text: 'Roles',columntype: 'textbox', filtertype: 'textbox', datafield: 'roleNames',width: '30%',filterable: false},
+			   		            	{ text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'userId',width:'10%', cellsalign: 'center',filterable: false}
 			   		            	  
 			   		                ]
 			   		         });
