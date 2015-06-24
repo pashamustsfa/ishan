@@ -4,5 +4,6 @@
 <display>
 	<category name="Scrum">
 		<portlet id="TeamManagement"></portlet>
+		<portlet id="ManageUsers"></portlet>
 	</category>
 </display>
