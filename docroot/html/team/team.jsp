@@ -293,7 +293,7 @@ function <portlet:namespace />teamPopup(){
 						destroyOnHide: true,
 						toolbars: {
 						footer: [
-							{
+							<%-- {
 								label: '<%= UnicodeLanguageUtil.get(pageContext, "lbl.form.label.save", "Save") %>',
 								on: {
 									click: function() {
@@ -304,7 +304,7 @@ function <portlet:namespace />teamPopup(){
 										}
 									}
 								}
-							},
+							},--%>
 							{
 								label: '<%= UnicodeLanguageUtil.get(pageContext, "lbl.form.label.close", "Close") %>',
 								on: {
