@@ -12,7 +12,7 @@ margin-top: 4px  !important;
 }
 
 .teamsGrids{
-margin-top:26px;
+margin-top:0px;
 }
 
 .projectId{
@@ -124,12 +124,11 @@ a.account {
 	width:100%;
 	height:42px;
 	margin-top: 0px;
-	background-color: #f2f2f2;
 }
 
-#thirdHeade r{
+#thirdHeader{
 	width:100%;
-	height: 18px;
+	height: 32px;
 	margin-top: 25px;
 	background-color: #f2f2f2;
 }
@@ -177,6 +176,7 @@ button {
 	color: #ffffff;
 	font-size: 14px;
 	padding: 9px 40px 11px 40px;
+	margin-top:10px;
 	text-decoration: none;
 }
 
@@ -304,7 +304,7 @@ left: 100%;
 }
   
 #Teams{
-  margin-top: -7px;
+  margin-top: -1px;
 }
 
 
