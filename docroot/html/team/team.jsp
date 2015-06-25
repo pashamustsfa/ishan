@@ -5,7 +5,7 @@
 <%@page import="com.liferay.portal.model.Group"%>
 <%@ include file="/html/init.jsp" %>
 <link rel="stylesheet" href="/html/css/CommonStyle.css"></link>
-<link rel="stylesheet" href="/html/css/team.css"></link>
+<link rel="stylesheet" href="<%= renderRequest.getContextPath() %>/css/team.css"></link>
 <link rel="stylesheet" href="/html/css/jqx.base.css" type="text/css" />
 <script type="text/javascript" src="/html/js/jqx/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="/html/js/jquery-ui.js"></script>
