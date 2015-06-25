@@ -14,6 +14,7 @@ import javax.portlet.PortletURL;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
+import com.liferay.portal.DuplicateTeamException;
 import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -22,6 +23,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -262,7 +264,6 @@ public class TeamPortlet extends MVCPortlet {
 				
 				 //Add Teams to User 
 				Team teamObj = null;
-				try {
 					/*try {
 						//teamObj = TeamLocalServiceUtil.addTeam(userId, groupId,teamName, teamDescription);
 						
@@ -281,27 +282,20 @@ public class TeamPortlet extends MVCPortlet {
 							com.vidyayug.attribute.service.Team_HierarchyLocalServiceUtil.addTeam_Hierarchy(teamId, parentId, currentOrganizationId);
 							log.info("Team Added to User Successfully .........");
 							SessionMessages.add(actionRequest, "request_processed", "Team Added Successfully  ");
-							actionResponse.setRenderParameter("jspPage", "/html/team/createteam.jsp");
-							actionResponse.setRenderParameter("artifactId", Long.toString(artifactId));
-							actionResponse.setRenderParameter("artifactTypeLabel", artifactTypeLabel);
-						} catch (Exception e) {
-							log.info("Problem in Creating Team... " + e);
-							SessionMessages.add(actionRequest, "request_processed", "Problem in Creating Team... ");
+						} catch (DuplicateTeamException dte) {
+							SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
+							SessionErrors.add(actionRequest, "duplicate-name");
 						}
 
 					}
-
-				} catch (Exception e) {
-					// TODO: handle exception
-					log.info("The Team Name is Already Exist" + e);
-					SessionMessages.add(actionRequest, "request_processed",
-							"The Team Name is Already Exist ");
-				}
-
-			} catch (Exception e) {
-				log.info("Exception " + e.getMessage());
-				e.printStackTrace();
-			}
-
+					} catch (Exception e) {
+						SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
+						SessionErrors.add(actionRequest, "duplicate-name");
+					}
+					finally {
+						actionResponse.setRenderParameter("jspPage", "/html/team/createteam.jsp");
+						actionResponse.setRenderParameter("artifactId", Long.toString(artifactId));
+						actionResponse.setRenderParameter("artifactTypeLabel", artifactTypeLabel);
+					}
 		}
 }

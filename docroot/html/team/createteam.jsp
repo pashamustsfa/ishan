@@ -33,7 +33,7 @@
 	List<ArtifactTeamMapping> artifactTeamMappingList = ArtifactTeamMappingLocalServiceUtil.findByArtifactTypeIdAndArtifactId(artifactTypeId, Long.valueOf(artifactId), isActive);
 
 %>
- 
+ <liferay-ui:error key="duplicate-name" message="Team name is already exist, Unable! to upload duplicate"/>
 <style>
 .jqx-widget-content {
   -moz-box-sizing: content-box;
