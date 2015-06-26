@@ -2,7 +2,9 @@ package com.vidyayug.scrum.portlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.List;
+
 
 
 
@@ -99,16 +101,25 @@ public JSONArray getUsersJsonData(List<User> userList,ResourceRequest resourceRe
 			List<Role> roleList;
 			JSONArray jsonArrayRoles=JSONFactoryUtil.createJSONArray();
 				try {
-				roleList = RoleLocalServiceUtil.getUserRoles(users.getUserId());
-				if(roleList.size()>0){
-				for(int i=0;i<roleList.size();i++){
-					JSONObject jsonObject_role = JSONFactoryUtil.createJSONObject();
-					jsonObject_role.put("roleObject", roleList.get(i).getName());
-					jsonArrayRoles.put(jsonObject_role);
-				}
 					
-				jsonObject.put("roleList",jsonArrayRoles);
+				roleList = RoleLocalServiceUtil.getUserGroupRoles(users.getUserId(),themeDisplay.getSiteGroupId());
+				Iterator<Role> it = roleList.iterator();
+				String roleName = "";
+				while(it.hasNext()) {
+
+					Role role = it.next();
+					roleName = role.getName();
+					if(roleName.indexOf("_") > 0) {
+						roleName = roleName.substring(0, roleName.indexOf("_"));
+					}
+					JSONObject jsonObject_role = JSONFactoryUtil.createJSONObject();
+					jsonObject_role.put("roleObject", roleName);
+					jsonArrayRoles.put(jsonObject_role);
+					
+					
 				}
+				jsonObject.put("roleList",jsonArrayRoles);
+				
 				} catch (SystemException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
