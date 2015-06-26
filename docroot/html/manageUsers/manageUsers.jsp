@@ -76,11 +76,11 @@
 }
 </style>
 
-<!-- <div id="projectMainDivContent" style="display:none;">
+ <div id="projectMainDivContent" style="display:none;">
 	<div id="text">
 		<div id="topheader">
 			<ul style="list-style:none;">
-				<li><span id="projecttext">Project</span><span id="rightarrow"><img src="/html/img/arrow-right.png" style="width:12px;margin-left: 9px;"></span></li>
+				<li><span id="projecttext">User</span><span id="rightarrow"><img src="/html/img/arrow-right.png" style="width:12px;margin-left: 9px;"></span></li>
 				<li style="float:right;margin-top:-27px;margin-right:146px;">
 					<div class="actions_button" style="margin-left:6px;">
 						<span id="actionstext">Actions</span><img src="/html/img/Settings.png" id="settingsImageStyle">
@@ -88,14 +88,14 @@
 				</li>
 			</ul>
 		</div>
-	</div> -->
+	</div> 
 
 
 	<div class="myproject"></div>
 	<div id="text1">
 		<div id="topheader1">
 		<ul style="list-style:none;">
-		<li style="float:right;margin-right: 77px;margin-top: -48px;"><span id="projecticon"><img src="/html/img/add (2).png" style="width:21px;margin-right:3px;"></span><a href="#addproject" onclick='<portlet:namespace />importUser();'>Import User</a></li>
+		<li style="float:right;margin-right: 83px;margin-top: -48px;"><span id="projecticon"><img src="/html/img/add (2).png" style="width:21px;margin-right:3px;"></span><a href="#addproject" onclick='<portlet:namespace />importUser();'>Import User</a></li>
 		<%-- <li style="float:right;margin-right: 61px;margin-top: -27px;"><span id="project"><img src="/html/img/add (2).png" style="width:21px;margin-right:3px;"></span><a href="#addproject" onclick='<portlet:namespace />importProject();'>Import Project</a></li>
 		<li style="float:right;margin-right: 53px;margin-top: -6px;"><span id="release"><img src="/html/img/add (2).png" style="width:21px;margin-right:3px;"></span><a href="#addrelease" onclick='<portlet:namespace />importRelease(0);'>Import Release</a></li> --%>
 		<li style="margin-top:57px;"><span id ="projectname">User</span></li>
@@ -128,7 +128,7 @@
 </div>
 
 
-
+</div>
 
 <script type="text/javascript">
 	var jqUser = jQuery.noConflict();
