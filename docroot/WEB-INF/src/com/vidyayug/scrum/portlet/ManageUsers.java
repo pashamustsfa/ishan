@@ -109,15 +109,14 @@ public JSONArray getUsersJsonData(List<User> userList,ResourceRequest resourceRe
 
 					Role role = it.next();
 					roleName = role.getName();
-					if(roleName.indexOf("_") > 0) {
-						roleName = roleName.substring(0, roleName.indexOf("_"));
-					}
-					JSONObject jsonObject_role = JSONFactoryUtil.createJSONObject();
-					jsonObject_role.put("roleObject", roleName);
-					jsonArrayRoles.put(jsonObject_role);
-					
-					
 				}
+				if(roleName.indexOf("_") > 0) {
+						roleName = roleName.substring(0, roleName.indexOf("_"));
+				}
+				JSONObject jsonObject_role = JSONFactoryUtil.createJSONObject();
+				jsonObject_role.put("roleObject", roleName);
+				jsonArrayRoles.put(jsonObject_role);
+
 				jsonObject.put("roleList",jsonArrayRoles);
 				
 				} catch (SystemException e) {
