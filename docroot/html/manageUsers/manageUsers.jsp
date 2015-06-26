@@ -92,7 +92,7 @@
 
 
 	<div class="myproject"></div>
-<div id="text1">
+	<div id="text1">
 		<div id="topheader1">
 		<ul style="list-style:none;">
 		<li style="float:right;margin-right: 77px;margin-top: -48px;"><span id="projecticon"><img src="/html/img/add (2).png" style="width:21px;margin-right:3px;"></span><a href="#addproject" onclick='<portlet:namespace />importUser();'>Import User</a></li>
@@ -123,10 +123,10 @@
             	<li  id="adding">Add</li>
             	<li id="adding">Import</li>
             </ul>
-        </li>
-    </ul>    -->
+        </li>-->
+    </ul>    
 </div>
-</div>
+
 
 
 
@@ -143,11 +143,6 @@
 ******************************************************************************************* -->
 <script>
 jqUser(document).ready(function() {
-	
-	/* jqUser('#iframe_id').attr("scrolling", "no");
-	jqUser('#iframe_id').attr("src", jqUser('#iframe_id').attr("src"));
-	 */
-	 
 	 getUserDetails();
 });
 
