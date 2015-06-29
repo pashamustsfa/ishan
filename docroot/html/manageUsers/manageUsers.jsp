@@ -250,9 +250,9 @@ jqUser(document).ready(function() {
 			   		                columnsresize: true,		                
 			      		            columns: [ 
 			   		                  { text: 'Name',columntype: 'textbox', filtertype: 'textbox',datafield: 'userName', width:'30%'},
-			   		               	  { text: 'Email Address',columntype: 'textbox', filtertype: 'textbox',datafield: 'emailAddress', width: '30%',filterable: false},
+			   		               	  { text: 'Email Address',columntype: 'textbox', filtertype: 'textbox',datafield: 'emailAddress', width: '30%'},
 			   		            	  /* { text: 'PhoneNumber',columntype: 'textbox', filtertype: 'textbox', datafield: 'phoneNumbers',width: '15%',filterable: false}, */
-			   		            	 { text: 'Roles',columntype: 'textbox', filtertype: 'textbox', datafield: 'roleNames',width: '30%',filterable: false},
+			   		            	 { text: 'Roles',columntype: 'textbox', filtertype: 'textbox', datafield: 'roleNames',width: '30%'},
 			   		            	{ text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'userId',width:'6%', cellsalign: 'center',filterable: false}
 			   		            	  
 			   		                ]
