@@ -105,9 +105,6 @@ public JSONArray getUsersJsonData(List<User> userList,ResourceRequest resourceRe
 				roleList = RoleLocalServiceUtil.getUserGroupRoles(users.getUserId(),themeDisplay.getSiteGroupId());
 				Iterator<Role> it = roleList.iterator();
 				String roleName="";
-				
-				
-				
 				while(it.hasNext()) {
 
 					Role role = it.next();
