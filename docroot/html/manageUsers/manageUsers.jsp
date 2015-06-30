@@ -114,7 +114,7 @@
 
 <div id="taskMenu">
     <ul>
-    	<li id="viewDetailsList">View User</li>
+    	<li id="viewDetailsList" onclick='viewuserDetails();' >View User</li>
 		<!-- <li id="teamPopUp">Team Details</li>
     	<li>Edit Project</li>
     	<li>View Document</li>
@@ -148,7 +148,10 @@ jqUser(document).ready(function() {
 
 </script>
 
-<script>    
+<script>  
+function viewuserDetails(){
+	alert('under construction');
+}
 	function getUserDetails() {
 		
 				var records = {};
@@ -259,6 +262,11 @@ jqUser(document).ready(function() {
 			   		         });
 			   		        	jqUser("#columntableprojectDetails").find(".jqx-checkbox-default").css('display', 'none');
 				},
+				complete: function(){
+					/* jqUser('#projectMainDivContent input[type="textarea"]').attr("placeholder", "Search Name ..."); */
+					/* alert(jqUser('#projectMainDivContent input[type="textarea"]')[1].attr("placeholder", "Search Email ..."));
+					alert(jqUser('#projectMainDivContent input[type="textarea"]')[2].attr("placeholder", "Search Role ...")); */
+						},
 				
 				
 			});
@@ -268,7 +276,9 @@ jqUser(document).ready(function() {
 	}
 	
 	
-	
+	function placeHolderReplacing(){
+		alert(jqUser('#projectMainDivContent input[type="textarea"]').length);
+	}
 	
 var workSheetButtonClick= function (event) {
 		
