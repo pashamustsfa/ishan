@@ -103,13 +103,16 @@ public JSONArray getUsersJsonData(List<User> userList,ResourceRequest resourceRe
 				try {
 					
 				roleList = RoleLocalServiceUtil.getUserGroupRoles(users.getUserId(),themeDisplay.getSiteGroupId());
-				/*Iterator<Role> it = roleList.iterator();*/
-				String roleName = roleList.get(roleList.size()).getName();
-				/*while(it.hasNext()) {
+				Iterator<Role> it = roleList.iterator();
+				String roleName="";
+				
+				
+				
+				while(it.hasNext()) {
 
 					Role role = it.next();
 					roleName = role.getName();
-				}*/
+				}
 				if(roleName.indexOf("_") > 0) {
 						roleName = roleName.substring(0, roleName.indexOf("_"));
 				}
