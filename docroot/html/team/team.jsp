@@ -5,7 +5,7 @@
 <%@page import="com.liferay.portal.model.Group"%>
 <%@ include file="/html/init.jsp" %>
 <link rel="stylesheet" href="/html/css/CommonStyle.css"></link>
-<link rel="stylesheet" href="<%= renderRequest.getContextPath() %>/css/team.css"></link>
+<link rel="stylesheet" href="/html/css/team.css"></link>
 <link rel="stylesheet" href="/html/css/jqx.base.css" type="text/css" />
 <script type="text/javascript" src="/html/js/jqx/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="/html/js/jquery-ui.js"></script>
@@ -502,7 +502,7 @@ background-color: rgb(232,232,232) !important;
 		
 		<div id="thirdHeader">
 			<div class="dropdown">
-				<h6 style="padding-top: 6px;">Add</h6>
+				<h6>Add</h6>
 				<div class="actions_button1" ><img src="/html/img/add-01.png" style="margin-top: -65px;margin-left: 29px;width:10px;cursor:pointer;"></div>
 				<div class="actions_dropdown1">
 					<ul class="root">

@@ -114,7 +114,7 @@
 
 <div id="taskMenu">
     <ul>
-    	<li id="viewDetailsList" onclick='viewuserDetails();' >View User</li>
+    	<li id="viewDetailsList" >view User</li>
 		<!-- <li id="teamPopUp">Team Details</li>
     	<li>Edit Project</li>
     	<li>View Document</li>
@@ -275,10 +275,18 @@ function viewuserDetails(){
            
 	}
 	
-	
-	function placeHolderReplacing(){
-		alert(jqUser('#projectMainDivContent input[type="textarea"]').length);
-	}
+	// handle context menu clicks.
+    jqUser("#taskMenu").on('itemclick', function (event) {
+        var args = event.args;
+        var rowindex = jqUser("#projectDetails").jqxGrid('getselectedrowindex');
+       if (jqUser.trim(jqUser(args).text().trim()) == "view User") {
+     	  editrow = rowindex;
+           jqUser("#<portlet:namespace />rowId").val(editrow);
+     	  var dataRecord = jqUser("#projectDetails").jqxGrid('getrowdata', editrow);	
+     	  viewUser(dataRecord.userId);
+     	  
+	  }
+    });
 	
 var workSheetButtonClick= function (event) {
 		
@@ -302,11 +310,35 @@ var workSheetButtonClick= function (event) {
       }
 			
 	
-	// handle context menu clicks.
+	
    
 </script>	
 
+<script>
+function viewUser(userId){
+	
+	 
+	
+		try{
 
+			var renderURL = Liferay.PortletURL.createRenderURL();
+			renderURL.setPortletMode("view");
+	        renderURL.setWindowState("normal");
+	      
+	       renderURL.setParameter("selecteduserId",userId); 
+	        
+	        renderURL.setPortletId("ManageUsers_WAR_TeamManagementportlet");
+	        renderURL.setParameter("jspPage","/html/manageUsers/userDetails.jsp");
+	        // alert("renderURL : "+renderURL);
+	        window.location.href = renderURL.toString();
+		}catch(e)
+		{
+			alert(e);
+		} 
+
+	}
+
+</script>
 
 <aui:script>
 function <portlet:namespace />importUser(){
