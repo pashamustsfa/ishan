@@ -55,7 +55,7 @@ try{
 
 <body>
 <div id="totalDiv" >
-<div id="navigateDiv" style="margin-top:50px;">
+<div id="navigateDiv" style="margin-top:9px;">
 <div id="userText"><a href="<portlet:renderURL/>" style="text-decoration: none;">User list</a></div>
 <img src="/html/img/arrow-right.png" id="userTextImage"/>
 </div>
@@ -356,11 +356,14 @@ var userId = <%=selecteduserId%>;
 					 var phoneNumber="";
 					 var roles="";
 					 var teamNames="";
-					
-					 for (var i=0; i < phoneList.length; i++) {
+					if(phoneList[i].phoneObject=='No PhoneNumber Available'){
+						 phoneNumber=phoneList[i].phoneObject;	
+					}else{
+						for (var i=0; i < phoneList.length; i++) {
 						 
 						 phoneNumber=phoneNumber+' '+phoneList[i].phoneObject;
 					 }
+					}
 					 for (var i=0; i <roleList.length; i++) {
 						 roles=roles+' '+roleList[i].roleObject;
 					 }
