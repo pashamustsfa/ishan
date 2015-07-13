@@ -226,7 +226,7 @@ public JSONArray getUsersJsonData(List<User> userList,ResourceRequest resourceRe
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
-			imgPath = "<img class='userIcon' src='" + imgPath +"' style='width:180px;' title='" + users.getFullName() + "'/>";
+			imgPath = "<img class='userIcon' src='" + imgPath +"' style='width:140px;' title='" + users.getFullName() + "'/>";
 			
 			
 			
@@ -351,7 +351,8 @@ public JSONArray getTasksJsonData(List<Task> taskRecords) {
 		jsonObject.put("backlogName", (Validator.isNotNull(data[5].toString()) ? data[5].toString(): " "));
 		jsonObject.put("sprintName", (Validator.isNotNull(data[6].toString()) ? data[6].toString(): " "));
 		jsonObject.put("releaseName", (Validator.isNotNull(data[7].toString()) ? data[7].toString(): " "));
-		jsonObject.put("EstDate", ((data[9] == null) ? "" : dt1.format(data[9]) ));
+		jsonObject.put("EstStartDate", ((data[8] == null) ? "" : dt1.format(data[8]) ));
+		jsonObject.put("EstEndDate", ((data[9] == null) ? "" : dt1.format(data[9]) ));
 		jsonObject.put("statusName", (Validator.isNotNull(data[10].toString()) ? data[10].toString(): " "));
 		jsonObject.put("phaseName", (Validator.isNotNull(data[11].toString()) ? data[11].toString(): " "));
 		jsonObject.put("timeLeft", (Validator.isNotNull(data[12].toString()) ? data[12].toString(): " "));

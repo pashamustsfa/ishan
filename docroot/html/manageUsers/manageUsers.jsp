@@ -316,27 +316,22 @@ var workSheetButtonClick= function (event) {
 
 <script>
 function viewUser(userId){
-	
-	 
-	
-		try{
-
-			var renderURL = Liferay.PortletURL.createRenderURL();
-			renderURL.setPortletMode("view");
-	        renderURL.setWindowState("normal");
-	      
-	       renderURL.setParameter("selecteduserId",userId); 
-	        
-	        renderURL.setPortletId("ManageUsers_WAR_TeamManagementportlet");
-	        renderURL.setParameter("jspPage","/html/manageUsers/userDetails.jsp");
-	        // alert("renderURL : "+renderURL);
-	        window.location.href = renderURL.toString();
-		}catch(e)
-		{
+	try{
+	var renderURL = Liferay.PortletURL.createRenderURL();
+	renderURL.setPortletMode("view");
+    renderURL.setWindowState("normal");
+    
+    renderURL.setParameter("selecteduserId",userId); 
+      
+    renderURL.setPortletId("ManageUsers_WAR_TeamManagementportlet");
+    renderURL.setParameter("jspPage","/html/manageUsers/userDetails.jsp");
+      // alert("renderURL : "+renderURL);
+    window.location.href = renderURL.toString();
+	}catch(e)
+	{
 			alert(e);
-		} 
-
-	}
+	} 
+}
 
 </script>
 

@@ -63,7 +63,8 @@ try{
 <div id="userProfile" >
 	<div id="userDetails" >
 	
-	<table id="userDetailsTable" class="tableData table">
+	<table id="userDetailsTable" 
+class="tableData table" >
   <tr id="userNameRow">
     <th>Name</th>
     <td></td>		
@@ -106,22 +107,22 @@ try{
 	<table id="taskDetailsTable" class="tableData table">
   
   <tr id="currentReleaseRow">
-    <th>currentRelease</th>
+    <th>Release</th>
     <td class="moretextTd"></td>		
     
   </tr>
   <tr id="currentBacklogRow">
-    <th>currentBacklog</th>
+    <th>Backlog</th>
     <td></td>		
     
   </tr>
   <tr id="currentSprintRow">
-    <th>currentSprint</th>
+    <th>Sprint</th>
     <td class="moretextTd"></td>		
     
   </tr>
   <tr id="currentUserStoryRow">
-    <th>currentUserStory</th>
+    <th>UserStory</th>
     <td class="moretextTd"></td>		
     
   </tr>
@@ -208,7 +209,8 @@ jqUserTaskData(document).ready(function() {
    	                var row = {};
                     row["taskId"] = data[j].taskid;
 		            row["taskName"] = data[j].taskName;
-					row["EstDate"] = data[j].EstDate;
+					row["EstStartDate"] = data[j].EstStartDate;
+					row["EstEndDate"] = data[j].EstEndDate;
 		            row["phaseName"] = data[j].phaseName;
 		            row["timeLeft"] = data[j].timeLeft;
    	                return row;
@@ -225,7 +227,8 @@ jqUserTaskData(document).ready(function() {
 						[
 							{ name: 'taskId', type: 'number' },
 							{ name: 'taskName', type: 'string' },
-							{ name: 'EstDate', typex: 'number' },
+							{ name: 'EstStartDate', typex: 'number' },
+							{ name: 'EstEndDate', typex: 'number' },
 							{ name: 'phaseName', type: 'string' },
 							{ name: 'timeLeft', type: 'number' }
 						]
@@ -261,10 +264,11 @@ jqUserTaskData(document).ready(function() {
 						selectionmode: 'checkbox',
 						columnsresize: true,		                
 						columns: [ 
-    		                      { text: 'TaskName', datafield: 'taskName', filtertype: 'textbox',width: '30%'},
-    		                      { text: 'EstDate', datafield: 'EstDate', filtertype: 'textbox',width: '11%',filterable: false},
-    		                      { text: 'phaseName', datafield: 'phaseName', width: '11%',filterable: false},
-    		                      { text: 'timeLeft', datafield: 'timeLeft',width:'11%',filterable: false},
+    		                      { text: 'TaskName', datafield: 'taskName', filtertype: 'textbox',width: '41%'},
+    		                      { text: 'Est-StrtDate', datafield: 'EstStartDate', filtertype: 'textbox',width: '11%',filterable: false},
+    		                      { text: 'Est-EndDate', datafield: 'EstEndDate', filtertype: 'textbox',width: '11%',filterable: false},
+    		                      { text: 'PhaseName', datafield: 'phaseName', width: '11%',filterable: false},
+    		                      { text: 'TimeLeft', datafield: 'timeLeft',width:'11%',filterable: false},
     	   		                  { text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'taskId',width:'8%', cellsalign: 'center',filterable: false}
 						]
 					});	 
