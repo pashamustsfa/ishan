@@ -226,7 +226,7 @@ public JSONArray getUsersJsonData(List<User> userList,ResourceRequest resourceRe
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
-			/*imgPath = "<img class='userIcon' src='" + imgPath +"' style='width:140px;' title='" + users.getFullName() + "'/>";*/
+		imgPath = "<img class='userIcon' src='" + imgPath +"' style='width:140px;' title='" + users.getFullName() + "'/>";
 			
 			
 			

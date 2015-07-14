@@ -44,14 +44,17 @@ border: 1px solid #e3e3e3;
   float: left;
     
 }
- .user{
-	/* width: 94px; */
+.userIcon{
+border:1px solid #021a40;	
+}
+/*  .user{
+	width: 94px;
   height: 113px;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-} 
+}  */
 #taskGrid{
  
   

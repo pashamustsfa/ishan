@@ -381,9 +381,9 @@ var userId = <%=selecteduserId%>;
 					 jqUserTaskData("#userDetailsTable").find('#userOrgNameRow').find("td").html(organizationName);
 					 jqUserTaskData("#userDetailsTable").find('#userDOJRow').find("td").html(JoinedDate);
 					 jqUserTaskData("#userDetailsTable").find('#userTeamNamesRow').find("td").html(teamNames);
-					 /* jqUserTaskData('#userPhoto').prepend(imgPath); */
-					 jqUserTaskData('#userPhoto').find('.one').css('background-image', 'url(' + imgPath + ')');
-					 jqUserTaskData('#userPhoto').find('.user').prop('title', userName);
+					  jqUserTaskData('#userPhoto').prepend(imgPath);
+					 /* jqUserTaskData('#userPhoto').find('.one').css('background-image', 'url(' + imgPath + ')'); */
+					 /* jqUserTaskData('#userPhoto').find('.user').prop('title', userName); */
 					 jqUserTaskData('#userPhoto').find("span").html('('+userName+')');
 					}
 					 var taskId=0;
