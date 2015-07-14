@@ -81,31 +81,46 @@ public class TeamPortlet extends MVCPortlet {
 				e.printStackTrace();
 			}
 		} else if("updateTeamUserAssociation".equalsIgnoreCase(cmdValue)) {
-			
 			String allSelectedVals = ParamUtil.getString(resourceRequest,"allSelectedVals");
 			String allUnSelectedVals = ParamUtil.getString(resourceRequest,"allUnSelectedVals");
 			long teamId = ParamUtil.getLong(resourceRequest,"teamId");
-
 			log.info("allSelectedVals: " + allSelectedVals);
 			log.info("allUnSelectedVals: " + allUnSelectedVals);
-			
 			String allSelectedIds[] = allSelectedVals.split(",");
 			String allUnSelectedIds[] = allUnSelectedVals.split(",");
-			
+			PrintWriter objWriter = PortalUtil.getHttpServletResponse(resourceResponse).getWriter();
 			long[] addUserIds = new long[allSelectedIds.length];
+			int status = 0;
+			long[] removeUserIds = new long[allUnSelectedIds.length];
+			if(!allUnSelectedVals.equalsIgnoreCase("")){
+			for (int i = 0; i < allUnSelectedIds.length; i++) {
+				System.out.println("Length......"+allUnSelectedIds.length);
+				System.out.println("Printing Value......"+Long.valueOf(allUnSelectedIds[i]));
+				removeUserIds[i] = Long.valueOf(allUnSelectedIds[i]);
+			}
+			try {
+				UserServiceUtil.unsetTeamUsers(teamId, removeUserIds);
+				status = 1;
+				System.out.println("After Status.......");
+			} catch (PortalException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			}	
+			if(!allSelectedVals.equalsIgnoreCase("")){
 			for (int i = 0; i < allSelectedIds.length; i++) {
+				System.out.println("Printing Value of All Selected IDS......"+Long.valueOf(allSelectedIds[i]));
 				addUserIds[i] = Long.valueOf(allSelectedIds[i]);
 			}
 			
-			long[] removeUserIds = new long[allUnSelectedIds.length];
-			for (int i = 0; i < allUnSelectedIds.length; i++) {
-				removeUserIds[i] = Long.valueOf(allUnSelectedIds[i]);
-			}
-			PrintWriter objWriter = PortalUtil.getHttpServletResponse(resourceResponse).getWriter();
-			int status = 0;
 			try {
+				log.info("add userId........: " + addUserIds);
+				log.info("add teamId........: " + teamId);
 				UserServiceUtil.addTeamUsers(teamId, addUserIds);
-				UserServiceUtil.unsetTeamUsers(teamId, removeUserIds);
+				//
 				status = 1;
 			} catch (PortalException e) {
 				// TODO Auto-generated catch block
@@ -114,8 +129,17 @@ public class TeamPortlet extends MVCPortlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+			//log.info("status: " + status);
+			//objWriter.print(status);
+			}else{
+				status = 2;
+			}
 			log.info("status: " + status);
 			objWriter.print(status);
+		
 		} else if ("GetTeamData".equalsIgnoreCase(cmdValue)) {			
 			long isActive = 1;
 			String artifactTypeLabel =ParamUtil.getString(resourceRequest,"artifactTypeLabel");
