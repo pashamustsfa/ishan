@@ -226,7 +226,7 @@ public JSONArray getUsersJsonData(List<User> userList,ResourceRequest resourceRe
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
-			imgPath = "<img class='userIcon' src='" + imgPath +"' style='width:140px;' title='" + users.getFullName() + "'/>";
+			/*imgPath = "<img class='userIcon' src='" + imgPath +"' style='width:140px;' title='" + users.getFullName() + "'/>";*/
 			
 			
 			
@@ -256,7 +256,7 @@ public JSONArray getUsersJsonData(List<User> userList,ResourceRequest resourceRe
 					else{
 						
 						JSONObject jsonObject_phone = JSONFactoryUtil.createJSONObject();
-						jsonObject_phone.put("phoneObject", "No PhoneNumber Available");
+						jsonObject_phone.put("phoneObject", "....");
 						jsonArrayPhone.put(jsonObject_phone);
 						jsonObject.put("phoneList",jsonArrayPhone);
 					}

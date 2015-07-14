@@ -55,7 +55,7 @@ try{
 
 <body>
 <div id="totalDiv" >
-<div id="navigateDiv" style="margin-top:9px;">
+<div id="navigateDiv">
 <div id="userText"><a href="<portlet:renderURL/>" style="text-decoration: none;">User list</a></div>
 <img src="/html/img/arrow-right.png" id="userTextImage"/>
 </div>
@@ -63,8 +63,8 @@ try{
 <div id="userProfile" >
 	<div id="userDetails" >
 	
-	<table id="userDetailsTable" 
-class="tableData table" >
+	<table id="userDetailsTable"  class="table" >
+	<tbody class="tableData">
   <tr id="userNameRow">
     <th>Name</th>
     <td></td>		
@@ -100,12 +100,13 @@ class="tableData table" >
     <td class="moretextTd"></td>		
     
   </tr>
+  </tbody>
 </table>
 	</div>
 	<div id="taskDetails">
 	
-	<table id="taskDetailsTable" class="tableData table">
-  
+	<table id="taskDetailsTable" class="table">
+  <tbody class="tableData">
   <tr id="currentReleaseRow">
     <th>Release</th>
     <td class="moretextTd"></td>		
@@ -126,16 +127,18 @@ class="tableData table" >
     <td class="moretextTd"></td>		
     
   </tr>
+  </tbody>
 </table>
 </div>
 	<div id="taskGraph">
 	
 	<div id="pie_container"></div>
 	</div>
-	<div id="userPhoto">
-	
+	<div id="userPhoto"><div class="user one"></div>
+	<span class="tableData"></span>
 	</div>
 </div>
+
 <div id="<portlet:namespace />taskGrid" class="taskGrids">
 
 </div>
@@ -264,12 +267,12 @@ jqUserTaskData(document).ready(function() {
 						selectionmode: 'checkbox',
 						columnsresize: true,		                
 						columns: [ 
-    		                      { text: 'TaskName', datafield: 'taskName', filtertype: 'textbox',width: '41%'},
-    		                      { text: 'Est-StrtDate', datafield: 'EstStartDate', filtertype: 'textbox',width: '11%',filterable: false},
-    		                      { text: 'Est-EndDate', datafield: 'EstEndDate', filtertype: 'textbox',width: '11%',filterable: false},
-    		                      { text: 'PhaseName', datafield: 'phaseName', width: '11%',filterable: false},
-    		                      { text: 'TimeLeft', datafield: 'timeLeft',width:'11%',filterable: false},
-    	   		                  { text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'taskId',width:'8%', cellsalign: 'center',filterable: false}
+    		                      { text: 'Task Name', datafield: 'taskName', filtertype: 'textbox',width: '41%'},
+    		                      { text: 'Est. Start Dt', datafield: 'EstStartDate', filtertype: 'textbox',width: '13%',filterable: false},
+    		                      { text: 'Est. End Dt', datafield: 'EstEndDate', filtertype: 'textbox',width: '13%',filterable: false},
+    		                      { text: 'Phase', datafield: 'phaseName', width: '12%',filterable: false},
+    		                      { text: 'Time Left', datafield: 'timeLeft',width:'12%',filterable: false},
+    	   		                  { text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'taskId',width:'9%', cellsalign: 'center',filterable: false}
 						]
 					});	 
 			},
@@ -356,7 +359,7 @@ var userId = <%=selecteduserId%>;
 					 var phoneNumber="";
 					 var roles="";
 					 var teamNames="";
-					if(phoneList[i].phoneObject=='No PhoneNumber Available'){
+					if(phoneList[i].phoneObject=='....'){
 						 phoneNumber=phoneList[i].phoneObject;	
 					}else{
 						for (var i=0; i < phoneList.length; i++) {
@@ -378,7 +381,10 @@ var userId = <%=selecteduserId%>;
 					 jqUserTaskData("#userDetailsTable").find('#userOrgNameRow').find("td").html(organizationName);
 					 jqUserTaskData("#userDetailsTable").find('#userDOJRow').find("td").html(JoinedDate);
 					 jqUserTaskData("#userDetailsTable").find('#userTeamNamesRow').find("td").html(teamNames);
-					 jqUserTaskData('#userPhoto').prepend(imgPath);
+					 /* jqUserTaskData('#userPhoto').prepend(imgPath); */
+					 jqUserTaskData('#userPhoto').find('.one').css('background-image', 'url(' + imgPath + ')');
+					 jqUserTaskData('#userPhoto').find('.user').prop('title', userName);
+					 jqUserTaskData('#userPhoto').find("span").html('('+userName+')');
 					}
 					 var taskId=0;
 					 var taskName=""; 

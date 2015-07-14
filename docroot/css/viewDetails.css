@@ -10,7 +10,8 @@ width: 100%;
 border: 1px solid #e3e3e3;
 }
 .tableData{
-	font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
 }
 #userDetails{
   float: left;
@@ -19,6 +20,7 @@ border: 1px solid #e3e3e3;
   background-color: #FFFFFF;
   border: 1px solid #e3e3e3;
 }
+
 #taskDetails{
   height:100%;
   border: 1px solid #e3e3e3;
@@ -40,11 +42,19 @@ border: 1px solid #e3e3e3;
   height:100%;
   background-color: #FFFFFF;
   float: left;
+    
 }
+ .user{
+	/* width: 94px; */
+  height: 113px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+} 
 #taskGrid{
-  /* height: 480px; */
-    /* border: 1px solid #e3e3e3; */
-  background-color: #FFFFFF;
+ 
+  
 }
 #userTextImage{
 width: 14px;
