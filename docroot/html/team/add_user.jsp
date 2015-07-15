@@ -150,7 +150,13 @@ jqMapResouce('#<portlet:namespace />updateTeamUserAssociation').click(function()
 			
 			success: function(data) {
 				if(data == 1) {
+				    var size=allSelectedVals.split(',').length;
+					if(size==1){
 					jqMapResouce('#<portlet:namespace  />successMsg').text('User assigned successfully.');
+					}
+					if(size>1){
+						jqMapResouce('#<portlet:namespace  />successMsg').text('Users assigned successfully.');
+					}
 					jqMapResouce('#<portlet:namespace  />successMsg').css('color','#000000');
 					jqMapResouce('#<portlet:namespace  />successMsg').css('display','block');
 					setTimeout(function() {
