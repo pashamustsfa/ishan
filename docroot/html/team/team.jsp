@@ -259,6 +259,18 @@ function <portlet:namespace />addUser(teamId) {
 					destroyOnHide: true,
 					toolbars: {
 						footer: [
+						{
+						label: '<%= UnicodeLanguageUtil.get(pageContext, "lbl.form.label.update", "Update Association") %>',
+						on: {
+						click: function() {						
+						var iframe = document.getElementsByTagName('iframe')[0];
+						if (iframe) {
+						var iframeContent = (iframe.contentWindow || iframe.contentDocument);
+						iframeContent.save();
+						}
+						}
+						}
+						},    
 						{	
 							label: '<%= UnicodeLanguageUtil.get(pageContext, "lbl.form.label.close", "Close") %>',
 							on: {
