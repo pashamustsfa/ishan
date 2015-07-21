@@ -98,7 +98,7 @@
 		</c:if>
 	</select>
 	</span>				
-	/* <aui:button name="updateTeamUserAssociation" id="updateTeamUserAssociation" value="Update Association" label="" style="float:left;width:160px;height:30px;text-shadow: 0px 0px #FFF;"></aui:button> */
+	<!-- <aui:button name="updateTeamUserAssociation" id="updateTeamUserAssociation" value="Update Association" label="" style="float:left;width:160px;height:30px;text-shadow: 0px 0px #FFF;"></aui:button>  -->
 	
 	<div class="alert alert-success" id="<portlet:namespace  />successMsg" style="float:left;margin-left:10px;display:none;"> User assigned successfully. </div>
 	<div class="alert alert-success" id="<portlet:namespace  />nosuccessMsg" style="float:left;margin-left:10px;display:none;"> Please Assign Users. </div>
@@ -121,7 +121,7 @@ jqMapResouce("#<portlet:namespace  />orgTeams").change(function(event) {
 	getUserDatails();
 });
 
-/* jqMapResouce('#<portlet:namespace />updateTeamUserAssociation').click(function() {  */
+<!--  jqMapResouce('#<portlet:namespace />updateTeamUserAssociation').click(function() {   -->
 	function save(){
 	var allSelectedVals=[];
 	var rowindexes = jqMapResouce('#userProfiles').jqxGrid('getselectedrowindexes');
