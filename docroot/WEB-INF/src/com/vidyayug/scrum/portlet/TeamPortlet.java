@@ -13,7 +13,7 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletURL;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
-
+import com.liferay.portal.DuplicateTeamException;
 import com.liferay.portal.kernel.cache.MultiVMPoolUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -322,7 +322,15 @@ public class TeamPortlet extends MVCPortlet {
 							"The Team Name is Already Exist ");
 				}
 
-			} catch (Exception e) {
+			}catch (DuplicateTeamException e) {
+				SessionMessages.add(actionRequest, "request_processed","The Team Name is Already Exist ");
+				actionResponse.setRenderParameter("jspPage", "/html/team/createteam.jsp");
+				actionResponse.setRenderParameter("artifactId", Long.toString(artifactId));
+				actionResponse.setRenderParameter("artifactTypeLabel", artifactTypeLabel);
+				log.info("Exception " + e.getMessage());
+				e.printStackTrace();
+			} 
+			catch (Exception e) {
 				log.info("Exception " + e.getMessage());
 				e.printStackTrace();
 			}
