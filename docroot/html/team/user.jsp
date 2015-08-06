@@ -252,13 +252,13 @@ jqUserData(document).ready(function () {
 		<aui:input name="artifactId" id="artifactId" type="hidden" value="<%=artifactId %>"/>
 		<aui:input name="artifactTypeLabel" id="artifactTypeLabel" type="hidden" value="<%=artifactTypeLabel %>"/>
 
-		<div id="thirdHeader" style="height:30px;line-height:30px;">
+		<%-- <div id="thirdHeader" style="height:30px;line-height:30px;">
 			<div class="dropdown" style="height: 20px; margin: auto 10px; width: 10%;float: left;border-right: 1px solid gray;line-height: 20px;margin-top: 5px;">
 				<span style="font-size:12px;font-weight:bold;float:left;width:35px;" onclick="<portlet:namespace />addUser();">Add</span>
 				<div class="actions_button1" style="float:left;" onclick="<portlet:namespace />addUser(0);"><img src="/html/img/add (2).png" style="width:16px;height:16px;"></div>
 			</div>
 		
-		</div>
+		</div> --%>
 	</div>
 	
 	<div id="<portlet:namespace />userGrid" class="userGrid"></div>
