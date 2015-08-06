@@ -184,13 +184,13 @@ var workSheetButtonClick= function (event) {
 	try{
 		
 	   // create context menu for Task
-       var taskContextMenu = jqTeamData("#<portlet:namespace />teamMenu").jqxMenu({ width: 160, height: 202, autoOpenPopup: false, mode: 'popup'});
+       var taskContextMenu = jqTeamData("#teamMenu").jqxMenu({ width: 160, height: 202, autoOpenPopup: false, mode: 'popup'});
        jqTeamData("#<portlet:namespace />teamGrid").on('contextmenu', function () {
            return false;
        });
        
        //handle context menu clicks.
-       jqTeamData("#<portlet:namespace />teamMenu").on('itemclick', function (event) {
+       jqTeamData("#teamMenu").on('itemclick', function (event) {
     	   
     	   if(i == 0) {
 	    	   i = 1;
@@ -499,6 +499,12 @@ background-color: rgb(232,232,232) !important;
 {
 background-color: rgb(232,232,232) !important;
 }
+
+#teamMenu{
+height:120px!important;
+}
+
+
 </style>
 
  <body>
@@ -537,7 +543,7 @@ background-color: rgb(232,232,232) !important;
 	<div id="<portlet:namespace />teamGrid" class="teamsGrids"></div>
 	
 	
-	<div id="<portlet:namespace />teamMenu" class="actions_dropdown" style="margin-left:405px !important;height:110px !important;width:140px !important;">	
+	<div id="teamMenu" class="actions_dropdown" style="margin-left:405px !important;height:110px !important;width:140px !important;">	
 	    <ul>
 	   		<li onclick="viewTeamDetails();"><img alt="View Details" src="/html/img/view.png" style="width: 15%;">&nbsp;&nbsp;View Details</li>
 			<li onclick="editTeam();"><img alt="Edit" src="/html/img/edit.png" style="width: 15%;">&nbsp;&nbsp;Edit</li>
