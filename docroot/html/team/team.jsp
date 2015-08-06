@@ -353,7 +353,7 @@ function <portlet:namespace />viewUserPopup(teamId){
 						destroyOnHide: true,
 						toolbars: {
 						footer: [
-							{
+							<%-- {
 								label: '<%= UnicodeLanguageUtil.get(pageContext, "lbl.form.label.save", "Save") %>',
 								on: {
 									click: function() {
@@ -364,7 +364,7 @@ function <portlet:namespace />viewUserPopup(teamId){
 										}
 									}
 								}
-							},
+							}, --%>
 							{
 								label: '<%= UnicodeLanguageUtil.get(pageContext, "lbl.form.label.close", "Close") %>',
 								on: {
