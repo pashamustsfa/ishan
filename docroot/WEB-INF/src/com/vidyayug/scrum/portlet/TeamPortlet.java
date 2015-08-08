@@ -6,9 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletURL;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 import com.liferay.portal.DuplicateTeamException;
@@ -45,17 +47,20 @@ import com.vidyayug.global.service.ApplicationParamValueLocalServiceUtil;
 import com.vidyayug.scrum.common.ScrumConstants;
 import com.vidyayug.scrum.service.ArtifactTeamMappingLocalServiceUtil;
 import com.vidyayug.scrum.service.BacklogLocalServiceUtil;
-
+/**
+ * Portlet implementation class TeamPortlet
+ */
 public class TeamPortlet extends MVCPortlet {
- Log log=LogFactoryUtil.getLog(getClass());
- SimpleDateFormat dt1 = new SimpleDateFormat("dd MMM, yyyy");
- @Override
- 	public void serveResource(ResourceRequest resourceRequest, ResourceResponse resourceResponse) throws IOException, PortletException {
-	log.info("ïnside server resource team portlet");
-	MultiVMPoolUtil.clear();   
-	WebCachePoolUtil.clear();
-	String cmdValue =ParamUtil.getString(resourceRequest,"CMD");
-	log.info("CMD value..."+cmdValue);
+	 Log log=LogFactoryUtil.getLog(getClass());
+	 SimpleDateFormat dt1 = new SimpleDateFormat("dd MMM, yyyy");
+	 @Override
+		public void serveResource(ResourceRequest resourceRequest, ResourceResponse resourceResponse) throws IOException, PortletException {
+		log.info("ïnside server resource team portlet");
+		MultiVMPoolUtil.clear();   
+		WebCachePoolUtil.clear();
+		String cmdValue =ParamUtil.getString(resourceRequest,"CMD");
+		log.info("CMD value..."+cmdValue);
+		
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(WebKeys.THEME_DISPLAY); 
 		Group group = themeDisplay.getScopeGroup();
 		long organizationId = group.getOrganizationId();
@@ -78,24 +83,15 @@ public class TeamPortlet extends MVCPortlet {
 		} else if("updateTeamUserAssociation".equalsIgnoreCase(cmdValue)) {
 			String allSelectedVals = ParamUtil.getString(resourceRequest,"allSelectedVals");
 			String allUnSelectedVals = ParamUtil.getString(resourceRequest,"allUnSelectedVals");
-			String allUnSelectedIds[]=null;
-			String allSelectedIds[]=null;
 			long teamId = ParamUtil.getLong(resourceRequest,"teamId");
 			log.info("allSelectedVals: " + allSelectedVals);
 			log.info("allUnSelectedVals: " + allUnSelectedVals);
-			 
-			if(!allSelectedVals.equalsIgnoreCase("")){
-				allSelectedIds= allSelectedVals.split(",");
-			}
-			if(!allUnSelectedVals.equalsIgnoreCase("")){
-				allUnSelectedIds= allUnSelectedVals.split(",");
-			}
-			
+			String allSelectedIds[] = allSelectedVals.split(",");
+			String allUnSelectedIds[] = allUnSelectedVals.split(",");
 			PrintWriter objWriter = PortalUtil.getHttpServletResponse(resourceResponse).getWriter();
 			long[] addUserIds = new long[allSelectedIds.length];
 			int status = 0;
 			long[] removeUserIds = new long[allUnSelectedIds.length];
-			System.out.println("before for loop");
 			if(!allUnSelectedVals.equalsIgnoreCase("")){
 			for (int i = 0; i < allUnSelectedIds.length; i++) {
 				System.out.println("Length......"+allUnSelectedIds.length);
