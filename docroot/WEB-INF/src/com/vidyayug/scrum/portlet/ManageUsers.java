@@ -30,6 +30,7 @@ import java.util.List;
 
 
 
+
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
@@ -58,6 +59,7 @@ import com.vidyayug.scrum.service.BacklogLocalServiceUtil;
 import com.vidyayug.scrum.service.ReleaseTeamResourceLocalServiceUtil;
 import com.vidyayug.scrum.service.TaskLocalServiceUtil;
 import com.vidyayug.scrum.service.WorkEffortDetailsLocalServiceUtil;
+import com.vidyayug.scrum.service.persistence.TaskFinderUtil;
 
 public class ManageUsers  extends MVCPortlet {
 	SimpleDateFormat dt1 = new SimpleDateFormat("dd MMM, yyyy");
@@ -88,14 +90,15 @@ public class ManageUsers  extends MVCPortlet {
 		if("GetTaskData".equalsIgnoreCase(cmdValue)) {
 			String userId = ParamUtil.getString(resourceRequest,"userId");
 			  System.out.println("userId--->"+userId);
-			  List<Task> taskRecords=null;
+			  JSONArray jsonArray=null;
 			  try{
-			  taskRecords=TaskLocalServiceUtil.getTaskData(Long.valueOf(userId),0);
+				  jsonArray=TaskLocalServiceUtil.getTaskData(Long.valueOf(userId),0);
+				  System.out.println("jsonArray--------"+jsonArray);
 			  }catch(Exception e){
 				  e.printStackTrace();  
 			  }
 			  
-			  JSONArray jsonArray = getTasksJsonData(taskRecords);
+			 /* JSONArray jsonArray = getTasksJsonData(taskRecords);*/
 				System.out.println("jsonArray: " + jsonArray);
 				writer1.print(jsonArray);
 			  
@@ -165,32 +168,32 @@ if("Graph".equalsIgnoreCase(cmdValue)){
 	
 	@SuppressWarnings("unchecked")
 	public JSONArray getUserwiseTaskList(List<Task> taskRecords){
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+		JSONArray mainjsonArray = JSONFactoryUtil.createJSONArray();
 		System.out.println("taskRecords size---"+taskRecords.size());
 		for(int i=0;i<taskRecords.size();i++){
 			
 			
 		JSONObject jsonObject=JSONFactoryUtil.createJSONObject();
-		List<Task> records=TaskLocalServiceUtil.getTaskData(0 , taskRecords.get(i).getTask_id());
-		System.out.println("length of the taskData---"+records.size());
+		JSONArray jsonArray=TaskLocalServiceUtil.getTaskData(0 , taskRecords.get(i).getTask_id());
+		System.out.println("length of the taskData---"+jsonArray.length());
 		
-		for(Object record:records) {
-         		Object data[] = (Object[])record;
-				jsonObject.put("taskId", (Validator.isNotNull(data[0].toString()) ? data[0].toString(): " "));
-				jsonObject.put("taskName", (Validator.isNotNull(data[1].toString()) ? data[1].toString(): " "));
-				jsonObject.put("AssignedName", (Validator.isNotNull(data[3].toString()) ? data[3].toString(): " "));
-				jsonObject.put("userStoryName", (Validator.isNotNull(data[4].toString()) ? data[4].toString(): " "));
-				jsonObject.put("backlogName", (Validator.isNotNull(data[5].toString()) ? data[5].toString(): " "));
-				jsonObject.put("sprintName", (Validator.isNotNull(data[6].toString()) ? data[6].toString(): " "));
-				jsonObject.put("releaseName", (Validator.isNotNull(data[7].toString()) ? data[7].toString(): " "));
-				jsonObject.put("EstDate", ((data[9] == null) ? "" : dt1.format(data[9]) ));
-				jsonObject.put("statusName", (Validator.isNotNull(data[10].toString()) ? data[10].toString(): " "));
-				jsonObject.put("phaseName", (Validator.isNotNull(data[11].toString()) ? data[11].toString(): " "));
-				jsonObject.put("timeLeft", (Validator.isNotNull(data[12].toString()) ? data[12].toString(): " "));
-				jsonArray.put(jsonObject);
+		for(int j=0;j<jsonArray.length();i++) {
+				JSONObject jsonObject1=jsonArray.getJSONObject(j);
+				jsonObject.put("taskId", (Validator.isNotNull(jsonObject1.getInt("task_id")) ? jsonObject1.getInt("task_id"): 0));
+				jsonObject.put("taskName", (Validator.isNotNull(jsonObject1.getString("taskName")) ? jsonObject1.getString("taskName"): " "));
+				jsonObject.put("AssignedName", (Validator.isNotNull(jsonObject1.getString("assignedTo")) ? jsonObject1.getString("assignedTo"): " "));
+				jsonObject.put("userStoryName", (Validator.isNotNull(jsonObject1.getString("userStoryName")) ? jsonObject1.getString("userStoryName"): " "));
+				jsonObject.put("backlogName", (Validator.isNotNull(jsonObject1.getString("backlogName")) ? jsonObject1.getString("backlogName"): " "));
+				jsonObject.put("sprintName", (Validator.isNotNull(jsonObject1.getString("sprintName")) ? jsonObject1.getString("sprintName"): " "));
+				jsonObject.put("releaseName", (Validator.isNotNull(jsonObject1.getString("releaseName")) ? jsonObject1.getString("releaseName"): " "));
+				/*jsonObject.put("EstDate", ((jsonObject1.getString("taskName")) ? "" : jsonObject1.getString("taskName") ));*/
+				jsonObject.put("statusName", (Validator.isNotNull(jsonObject1.getString("statusName")) ? jsonObject1.getString("statusName"): " "));
+				jsonObject.put("phaseName", (Validator.isNotNull(jsonObject1.getString("phaseName")) ? jsonObject1.getString("phaseName"): " "));
+				jsonObject.put("timeLeft", (Validator.isNotNull(jsonObject1.getString("timeLeft")) ? jsonObject1.getString("timeLeft"): " "));
+				mainjsonArray.put(jsonObject);
 			}
 		}	
-		return jsonArray;
+		return mainjsonArray;
 	}
 public JSONArray getUsersJsonData(List<User> userList,ResourceRequest resourceRequest, ResourceResponse resourceResponse) {
 	ThemeDisplay themeDisplay= (ThemeDisplay) resourceRequest.getAttribute(WebKeys.THEME_DISPLAY);
