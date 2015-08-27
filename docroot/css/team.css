@@ -3,7 +3,10 @@
 	margin-top: -7px;
 	width: 101.54%;
 }
-
+ #goToProject a:hover {
+    color: #297f52;
+    text-decoration: none;
+}
 #taskMenu {
 	height: 117px !important;
 	width: 150px !important;
@@ -449,6 +452,10 @@ scale3d
 		box-shadow: inset 0 2px 0 #0e9553;
 		color: #0e9553;
 	}
+	#goToProject{
+	    
+    text-decoration: none;
+}
 	#thirdHeader {
 		width: 26%;
 		height: 37px;
@@ -458,6 +465,7 @@ scale3d
 	}
 	.imgClass {
 		margin-left: 0px;
+		    width: 4%;
 	}
 	#tabs1 a {
 		position: relative;
@@ -526,6 +534,10 @@ scale3d
 		margin-top: 27px;
 		width: 98%;
 	}
+	#goToProject a {
+	    
+    text-decoration: none;
+}
 }
 
 @media only screen and (min-width: 376px) and (max-width: 768px) {
@@ -538,6 +550,10 @@ scale3d
 		margin-top: 27px;
 		width: 95%;
 	}
+	.imgClass{
+  margin-left: 26px;
+ width: 2%;
+  }
 	#tabs1 li {
 		float: left;
 		width: 49%;
@@ -555,6 +571,10 @@ scale3d
 		height: 43px;
 		color: black;
 	} */
+	#goToProject{
+	    
+    text-decoration: none;
+}
 	.actions_button1 {
 		width: 100% !important;
 		height: 20px;
@@ -625,6 +645,10 @@ scale3d
 	#tabs1 {
 		width: auto;
 	}
+	#goToProject{
+	    
+    text-decoration: none;
+}
 	#tabs1 a {
 		height: 42px ! important;
 		line-height: 45px;
@@ -698,4 +722,14 @@ scale3d
 		color: #0e9553;
 		width: 33%;
 	}
+	.imgClass{
+  margin-left: 26px;
+  width: 1%;
+  }
+}
+@media only screen and (min-width: 800px) and (max-width: 1240px) {
+	.imgClass{
+  margin-left: 26px;
+  width: 2%;
+  }
 }
