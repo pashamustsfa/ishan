@@ -5,8 +5,13 @@
 <%@page import="com.liferay.portal.model.Group"%>
 <%@ include file="/html/init.jsp" %>
 <link rel="stylesheet" href="/html/css/CommonStyle.css"></link>
-<link rel="stylesheet" href="/html/css/team.css"></link>
+<link rel="stylesheet" href="<%=renderRequest.getContextPath()%>/css/team.css"></link>
 <link rel="stylesheet" href="/html/css/jqx.base.css" type="text/css" />
+	<link rel="stylesheet" href="/html/css/jqx.windowsphone.css" type="text/css" />
+	<link rel="stylesheet" href="/html/css/jqx.blackberry.css" type="text/css" />
+	<link rel="stylesheet" href="/html/css/jqx.mobile.css" type="text/css" />
+	<link rel="stylesheet" href="/html/css/jqx.android.css" type="text/css" />
+
 <script type="text/javascript" src="/html/js/jqx/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="/html/js/jquery-ui.js"></script>
 <script type="text/javascript" src="/html/js/jqx/jqxcore.js"></script>
@@ -28,6 +33,7 @@
 <script type="text/javascript" src="/html/js/jqx/jqxgrid.pager.js"></script>
 <script type="text/javascript" src="/html/js/jqx/jqxtree.js"></script>
 <script type="text/javascript" src="/html/js/jqx/jqxcheckbox.js"></script>
+<script type="text/javascript" src="/html/js/jqx/simulator.js"></script>
 <portlet:defineObjects />
 
 
@@ -89,6 +95,8 @@ function editTeam(){
 function getTeamData() {
 	var artifactId = jqTeamData("#<portlet:namespace />artifactId").val();
 	var artifactTypeLabel = jqTeamData("#<portlet:namespace />artifactTypeLabel").val();
+	
+	 var theme = prepareSimulator("grid");
 	
 	/* alert('artifactId: ' + artifactId);
 	alert('artifactTypeLabel: ' + artifactTypeLabel); */
@@ -160,15 +168,18 @@ function getTeamData() {
 						filterable: true,		   		                
 						pageable: true,
 						selectionmode: 'checkbox',
-						columnsresize: true,		                
+						columnsresize: true,
+						theme: theme,
+						
 						columns: [ 
     		                      { text: 'Name', datafield: 'teamName', filtertype: 'textbox',width: '60%'},
-    		                      { text: 'No. of Members', datafield: 'no_of_users', filtertype: 'textbox',width: '11%',filterable: false},
-    		                      { text: 'No. of Backlogs', datafield: 'no_of_backlogs', width: '11%',filterable: false},
-    		                      { text: 'No. of Userstories', datafield: 'no_of_userstory',width:'11%',filterable: false},
-    	   		                  { text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'teamId',width:'8%', cellsalign: 'center',filterable: false}
+    		                      { text: 'No. of Members', datafield: 'no_of_users', filtertype: 'textbox',width: '100',filterable: false},
+    		                      { text: 'No. of Backlogs', datafield: 'no_of_backlogs', width: '100',filterable: false},
+    		                      { text: 'No. of Userstories', datafield: 'no_of_userstory',width:'100',filterable: false},
+    	   		                  { text: 'Action', cellsrenderer: workSheetButton_html, datafield: 'teamId',width:'80', cellsalign: 'center',filterable: false}
 						]
 					});	
+					initSimulator("grid");
 			},
 				complete: function(){
 				jqTeamData('#<portlet:namespace />teamGrid input[type="textarea"]'). attr("placeholder", "Search Team ...");
@@ -512,16 +523,12 @@ height:120px!important;
 		<aui:input name="artifactId" id="artifactId" type="hidden" value="0"/>
 		<aui:input name="artifactTypeLabel" id="artifactTypeLabel" type="hidden" value="0"/>
 				
-		<div id="secondHeader">
-			<div class="buttonForAdd" title="Click here to add team" onclick="<portlet:namespace />teamPopup();">
-				<div class="addingTeam" style="cursor:pointer !important;">Add Team</div>
-			</div>
-		</div>
+		
 		
 		<div id="thirdHeader">
-			<div class="dropdown">
+			<div  id="dropdown1" class="dropdown">
 				<h6>Add</h6>
-				<div class="actions_button1" ><img src="/html/img/add-01.png" style="margin-top: -65px;margin-left: 29px;width:10px;cursor:pointer;"></div>
+				<div class="actions_button1" ><img src="/html/img/add-01.png" style="width:10px;cursor:pointer;"></div>
 				<div class="actions_dropdown1">
 					<ul class="root">
 						<li>
@@ -535,15 +542,23 @@ height:120px!important;
 		
 		</div>
 		
-		<div id ="Teams">
+		<!-- <div id ="Teams">
 			<h5>Teams</h5>
-		</div>
+		</div> -->
+		
+		<div class='default'>
+	    <div id="demoContainer" class="device-mobile-tablet">
+	        <div id="myJqxGridContainer" class="device-mobile-tablet-container">
+	            <div  id="<portlet:namespace />teamGrid" class="teamsGrids" ></div>
+	        </div>
+	    </div>
+	</div>
 	</div>
 	
-	<div id="<portlet:namespace />teamGrid" class="teamsGrids"></div>
+	<%-- <div id="<portlet:namespace />teamGrid" class="teamsGrids"></div> --%>
 	
 	
-	<div id="teamMenu" class="actions_dropdown" style="margin-left:405px !important;height:110px !important;width:140px !important;">	
+	<div id="teamMenu" class="actions_dropdown">	
 	    <ul>
 	   		<li onclick="viewTeamDetails();"><img alt="View Details" src="/html/img/view.png" style="width: 15%;">&nbsp;&nbsp;View Details</li>
 			<li onclick="editTeam();"><img alt="Edit" src="/html/img/edit.png" style="width: 15%;">&nbsp;&nbsp;Edit</li>
