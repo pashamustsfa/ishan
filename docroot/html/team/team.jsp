@@ -95,7 +95,8 @@ function editTeam(){
 function getTeamData() {
 	var artifactId = jqTeamData("#<portlet:namespace />artifactId").val();
 	var artifactTypeLabel = jqTeamData("#<portlet:namespace />artifactTypeLabel").val();
-	
+	alert('artifactId------'+artifactId);
+	alert('artifactTypeLabel------'+artifactTypeLabel);
 	 var theme = prepareSimulator("grid");
 	
 	/* alert('artifactId: ' + artifactId);
@@ -236,10 +237,12 @@ var workSheetButtonClick= function (event) {
 
 <script>
 	Liferay.on('artifactTeamMappingEvent',function(event) {
+		
 		if(event.artifactId.error!=null){
 			alert('error artifactId: '+event.artifactId.error);
 		}else{
 			var  artifactId = event.artifactId;
+			
 			jqTeamData("#<portlet:namespace />artifactId").val(artifactId);
 		}
 		
@@ -247,6 +250,7 @@ var workSheetButtonClick= function (event) {
 			alert('error artifactTypeId: '+event.artifactTypeLabel.error);
 		}else{
 			var  artifactTypeLabel = event.artifactTypeLabel;
+			
 			jqTeamData("#<portlet:namespace />artifactTypeLabel").val(artifactTypeLabel);
 		}
 	});

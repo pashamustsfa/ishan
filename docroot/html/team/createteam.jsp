@@ -29,9 +29,9 @@
 		 ApplicationParamValue appParam = ApplicationParamValueLocalServiceUtil.findByappParanNamesAppParamGrpId(artifactTypeLabel, appParamGroup.getAppParamGroupId());
 		 artifactTypeId = appParam.getAppParamValueId(); 
 	}
-	
+	System.out.println("artifactTypeId--->"+artifactTypeId+"artifactId---->"+Long.valueOf(artifactId)+"isActive-------"+isActive);
 	List<ArtifactTeamMapping> artifactTeamMappingList = ArtifactTeamMappingLocalServiceUtil.findByArtifactTypeIdAndArtifactId(artifactTypeId, Long.valueOf(artifactId), isActive);
-
+System.out.println("artifactTeamMappingList-----"+artifactTeamMappingList);
 %>
  
 <style>
@@ -57,7 +57,7 @@
 
 	<portlet:actionURL name="AddVidyayugTeams" var="AddVidyayugTeams" />
 
-	<aui:form action="<%=AddVidyayugTeams%>" method="post" name="insertTeamUserForm" id="insertTeamUserForm" cssClass="vy_attributes">
+	<aui:form action="<%=AddVidyayugTeams.toString()%>" method="post" name="insertTeamUserForm" id="insertTeamUserForm" cssClass="vy_attributes">
 	<aui:input name="artifactId" id="artifactId" type="hidden" value="<%=artifactId%>"/>
 	<aui:input name="artifactTypeLabel" id="artifactTypeLabel" type="hidden" value="<%=artifactTypeLabel%>"/>
 		<aui:layout>		
