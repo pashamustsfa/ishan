@@ -294,17 +294,12 @@ function printUserDatails(data) {
    		                },	                
       		            columns: [
    		                  { text: ' ', datafield: 'imgPath', width:'50'},
-   		                  { text: 'Screen Name', datafield: 'screenName', width:'55%'},
-   		              	  { text: 'Full Name', datafield: 'fullName', width:'55%'}
+   		                  { text: 'Screen Name', datafield: 'screenName', width:'46%'},
+   		              	  { text: 'Full Name', datafield: 'fullName', width:'46%'}
    		               ]
    		            }); 
-        	jqMapResouce("#userProfiles").find(".jqx-checkbox-default:first").css('display', 'none');
-        	if(data.length>0) {
-				var rowindexes = jqMapResouce('#userProfiles').jqxGrid('getselectedrowindexes');
-				for (var i = 0; i < rowindexes.length; i++) {
-				   jqMapResouce('#userProfiles').jqxGrid('unselectrow', i);
-				} 
-			}
+        	//jqMapResouce("#userProfiles").find(".jqx-checkbox-default:first").css('display', 'none');
+        	
         	
         	var rows = jqMapResouce('#userProfiles').jqxGrid('getrows');
             var rowsCount = rows.length;
@@ -314,6 +309,13 @@ function printUserDatails(data) {
                     jqMapResouce('#userProfiles').jqxGrid('selectrow', k);
                 };
             };
+            
+		if(data.length>0) {
+				var rowindexes = jqMapResouce('#userProfiles').jqxGrid('getselectedrowindexes');
+				for (var i = 0; i < rowindexes.length; i++) {
+				   jqMapResouce('#userProfiles').jqxGrid('unselectrow', i);
+				};
+			};
 
 	}catch(e) {
 		alert(e);
