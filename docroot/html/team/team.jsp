@@ -95,9 +95,8 @@ function editTeam(){
 function getTeamData() {
 	var artifactId = jqTeamData("#<portlet:namespace />artifactId").val();
 	var artifactTypeLabel = jqTeamData("#<portlet:namespace />artifactTypeLabel").val();
-	alert('artifactId------'+artifactId);
-	alert('artifactTypeLabel------'+artifactTypeLabel);
-	 var theme = prepareSimulator("grid");
+	
+	 //var theme = prepareSimulator("grid");
 	
 	/* alert('artifactId: ' + artifactId);
 	alert('artifactTypeLabel: ' + artifactTypeLabel); */
@@ -170,7 +169,7 @@ function getTeamData() {
 						pageable: true,
 						selectionmode: 'checkbox',
 						columnsresize: true,
-						theme: theme,
+						//theme: theme,
 						
 						columns: [ 
     		                      { text: 'Name', datafield: 'teamName', filtertype: 'textbox',width: '60%'},
@@ -237,12 +236,10 @@ var workSheetButtonClick= function (event) {
 
 <script>
 	Liferay.on('artifactTeamMappingEvent',function(event) {
-		
 		if(event.artifactId.error!=null){
 			alert('error artifactId: '+event.artifactId.error);
 		}else{
 			var  artifactId = event.artifactId;
-			
 			jqTeamData("#<portlet:namespace />artifactId").val(artifactId);
 		}
 		
@@ -250,7 +247,6 @@ var workSheetButtonClick= function (event) {
 			alert('error artifactTypeId: '+event.artifactTypeLabel.error);
 		}else{
 			var  artifactTypeLabel = event.artifactTypeLabel;
-			
 			jqTeamData("#<portlet:namespace />artifactTypeLabel").val(artifactTypeLabel);
 		}
 	});
@@ -549,14 +545,14 @@ height:120px!important;
 		<!-- <div id ="Teams">
 			<h5>Teams</h5>
 		</div> -->
-		
+
 		<div class='default'>
-	    <div id="demoContainer" class="device-mobile-tablet">
-	        <div id="myJqxGridContainer" class="device-mobile-tablet-container">
-	            <div  id="<portlet:namespace />teamGrid" class="teamsGrids" ></div>
-	        </div>
-	    </div>
-	</div>
+			<div id="demoContainer" class="device-mobile-tablet">
+				<div id="myJqxGridContainer" class="device-mobile-tablet-container">
+					<div id="<portlet:namespace />teamGrid" class="teamsGrids"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 	<%-- <div id="<portlet:namespace />teamGrid" class="teamsGrids"></div> --%>
